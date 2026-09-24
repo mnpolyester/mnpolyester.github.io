@@ -80,7 +80,11 @@ test('documents local operation and deterministic deployment', async () => {
   assert.match(readme, /http:\/\/127\.0\.0\.1:4173\//);
   assert.match(readme, /node --test test\/\*\.test\.mjs/);
   assert.match(readme, /\.github\/workflows\/pages\.yml/);
-  assert.match(readme, /custom domain is declared in `CNAME`/i);
+  assert.match(readme, /`CNAME`.+repository metadata.+portability/i);
+  assert.match(
+    readme,
+    /custom GitHub Actions workflow.+`CNAME`.+does not assign.+live custom domain/i,
+  );
 });
 
 test('documents credential isolation and a cautious DNS cutover', async () => {
@@ -99,6 +103,24 @@ test('documents credential isolation and a cautious DNS cutover', async () => {
   assert.match(dnsSection, /immediately before.+cutover/i);
   assert.match(dnsSection, /user confirmation/i);
   assert.match(dnsSection, /web-hosting DNS records/i);
+
+  const orderedReleaseSteps = [
+    /verified `mnpolyester` account/i,
+    /enable GitHub Pages with GitHub Actions/i,
+    /set `mnpolyester\.in` as the repository custom domain in Settings → Pages \(or through GitHub's official API\)/i,
+    /verify the temporary GitHub Pages URL and the repository's custom-domain association/i,
+    /show the exact proposed DNS changes/i,
+    /obtain user confirmation/i,
+    /change only the web-hosting DNS records/i,
+  ];
+  let previousStepIndex = -1;
+
+  for (const releaseStep of orderedReleaseSteps) {
+    const stepIndex = dnsSection.search(releaseStep);
+    assert.ok(stepIndex > previousStepIndex, `${releaseStep} must appear in release order`);
+    previousStepIndex = stepIndex;
+  }
+
   assert.doesNotMatch(dnsSection, /\b(?:\d{1,3}\.){3}\d{1,3}\b/);
   assert.doesNotMatch(
     dnsSection,
