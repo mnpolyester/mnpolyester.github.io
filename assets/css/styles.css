@@ -141,7 +141,7 @@ h3 {
   left: var(--space-2);
   z-index: 1000;
   min-height: var(--control-min);
-  padding: var(--space-1) var(--space-3);
+  padding: var(--space-2) var(--space-3);
   border-radius: var(--radius-control);
   background: var(--brand-blue);
   color: #FFFFFF;
@@ -178,7 +178,7 @@ h3 {
   justify-content: center;
   gap: var(--space-1);
   min-height: var(--button-min);
-  padding: var(--space-1) var(--button-inline-padding);
+  padding: var(--space-2) var(--button-inline-padding);
   border: 1px solid var(--brand-blue);
   border-radius: var(--radius-control);
   background: var(--brand-blue);
@@ -1041,8 +1041,9 @@ h3 {
     transition: none !important;
   }
 
+  [data-reveal],
   .button,
-  .gallery__item > img {
+  .gallery__item img {
     opacity: 1 !important;
     transform: none !important;
   }
