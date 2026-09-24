@@ -597,11 +597,16 @@ test('defines the accessible navigation and gallery interaction contract', async
   assert.match(script, /setAttribute\(["']aria-expanded["'],\s*String\(isOpen\)\)/);
   assert.match(script, /nav\.setAttribute\(["']data-open["'],\s*["']true["']\)/);
   assert.match(script, /nav\.removeAttribute\(["']data-open["']\)/);
-  assert.match(script, /nav\.addEventListener\(["']click["']/);
-  assert.match(script, /closest\(["']a["']\)/);
-  assert.match(script, /setNavOpen\(false\)/);
-  assert.match(script, /event\.key\s*!==\s*["']Escape["']/);
-  assert.match(script, /navToggle\.focus\(\)/);
+  assert.match(
+    script,
+    /nav\.addEventListener\(["']click["'][\s\S]{0,360}?closest\(["']a["']\)[\s\S]{0,260}?setNavOpen\(false\)/,
+    'Expected activating a navigation anchor to close the mobile menu',
+  );
+  assert.match(
+    script,
+    /document\.addEventListener\(["']keydown["'][\s\S]{0,300}?event\.key\s*!==\s*["']Escape["']\s*\|\|\s*!isOpen[\s\S]{0,220}?setNavOpen\(false\);\s*navToggle\.focus\(\)/,
+    'Expected Escape on an open menu to close it and restore toggle focus',
+  );
 
   assert.match(script, /querySelector\(["']\[data-gallery\]["']\)/);
   assert.match(script, /querySelector\(["']\[data-image-dialog\]["']\)/);
@@ -617,7 +622,12 @@ test('defines the accessible navigation and gallery interaction contract', async
     script,
     /dialogImage\.toggleAttribute\("data-edge-crop", button\.hasAttribute\("data-edge-crop"\)\);/,
   );
-  assert.match(script, /dialog\.showModal\(\)/);
+  assert.match(script, /dialogOpener\s*=\s*button/);
+  assert.match(
+    script,
+    /if\s*\(\s*!dialog\.open\s*\)\s*\{\s*dialog\.showModal\(\);\s*\}/,
+    'Expected the dialog to open only when it is not already open',
+  );
   assert.match(script, /dialogClose\.addEventListener\(["']click["']/);
   assert.match(script, /event\.target\s*===\s*dialog/);
   assert.ok(
