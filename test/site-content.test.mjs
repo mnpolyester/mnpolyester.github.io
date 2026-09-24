@@ -459,10 +459,10 @@ test('includes canonical, sharing, and structural metadata', () => {
     findTag(headTags, 'link', (attributes) => {
       return (
         hasRelToken(attributes, 'canonical')
-        && attributes.get('href') === 'https://mnpolyester.github.io/'
+        && attributes.get('href') === 'https://mnpolyester.in/'
       );
     }),
-    'Expected a head canonical <link> with exact href="https://mnpolyester.github.io/"',
+    'Expected a head canonical <link> with exact href="https://mnpolyester.in/"',
   );
   assert.ok(
     findTag(headTags, 'meta', (attributes) => {
@@ -477,20 +477,20 @@ test('includes canonical, sharing, and structural metadata', () => {
     findTag(headTags, 'meta', (attributes) => {
       return (
         attributes.get('property')?.toLowerCase() === 'og:url'
-        && attributes.get('content') === 'https://mnpolyester.github.io/'
+        && attributes.get('content') === 'https://mnpolyester.in/'
       );
     }),
-    'Expected an Open Graph URL for https://mnpolyester.github.io/',
+    'Expected an Open Graph URL for https://mnpolyester.in/',
   );
   assert.ok(
     findTag(headTags, 'meta', (attributes) => {
       return (
         attributes.get('property')?.toLowerCase() === 'og:image'
         && attributes.get('content')
-          === 'https://mnpolyester.github.io/assets/brand/mnpolyester-logo-1400.png'
+          === 'https://mnpolyester.in/assets/brand/mnpolyester-logo-1400.png'
       );
     }),
-    'Expected an absolute GitHub Pages Open Graph image URL',
+    'Expected an absolute custom-domain Open Graph image URL',
   );
   assert.ok(
     findTag(bodyTags, 'main', (attributes) => attributes.get('id') === 'main-content'),

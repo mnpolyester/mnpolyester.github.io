@@ -1,5 +1,7 @@
 # M.N. Polyester GitHub Pages Website Design
 
+> **Hosting amendment:** The site owner's later request to make `mnpolyester.in` the native GitHub Pages custom domain supersedes this document's earlier `github.io`-canonical and forwarding-only decisions. See [the custom-domain amendment](./2026-09-24-mnpolyester-custom-domain-amendment.md). The content and visual-design decisions below remain in effect.
+
 ## Purpose
 
 Replace the current GoDaddy-hosted website with a lightweight, modern, single-page website hosted independently at `https://mnpolyester.github.io/`. The redesign should feel more polished while remaining as simple as the current site and preserving its established content, factory photography, and contact details.

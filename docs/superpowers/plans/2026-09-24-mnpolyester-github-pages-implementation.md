@@ -1,5 +1,7 @@
 # M.N. Polyester GitHub Pages Website Implementation Plan
 
+> **Hosting amendment:** The site owner's later request to make `mnpolyester.in` the native GitHub Pages custom domain supersedes this plan's `github.io`-canonical release steps. See [the custom-domain amendment](../specs/2026-09-24-mnpolyester-custom-domain-amendment.md). The completed site implementation remains authoritative for content and presentation.
+
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
 
 **Goal:** Build, verify, and publish a fast single-page M.N. Polyester website independently at `https://mnpolyester.github.io/` while preserving the company’s original content, photography, and corrected full-mark favicon.

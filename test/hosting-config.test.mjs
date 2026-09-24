@@ -12,14 +12,13 @@ function readRepositoryFile(filePath) {
   return readFile(path.join(repositoryRoot, filePath), 'utf8');
 }
 
-test('uses the default GitHub Pages domain and disables Jekyll processing', async () => {
-  const noJekyll = await readRepositoryFile('.nojekyll');
-
-  await assert.rejects(
+test('records the canonical custom-domain metadata and disables Jekyll processing', async () => {
+  const [customDomain, noJekyll] = await Promise.all([
     readRepositoryFile('CNAME'),
-    (error) => error?.code === 'ENOENT',
-    'CNAME must be absent so GitHub Pages serves mnpolyester.github.io directly',
-  );
+    readRepositoryFile('.nojekyll'),
+  ]);
+
+  assert.equal(customDomain, 'mnpolyester.in\n');
   assert.equal(noJekyll, '');
 });
 
@@ -35,13 +34,13 @@ test('publishes crawler directives for the canonical site', async () => {
       'User-agent: *',
       'Allow: /',
       '',
-      'Sitemap: https://mnpolyester.github.io/sitemap.xml',
+      'Sitemap: https://mnpolyester.in/sitemap.xml',
       '',
     ].join('\n'),
   );
   assert.match(sitemap, /^<\?xml version="1\.0" encoding="UTF-8"\?>/);
   assert.equal(
-    sitemap.match(/<loc>https:\/\/mnpolyester\.github\.io\/<\/loc>/g)?.length,
+    sitemap.match(/<loc>https:\/\/mnpolyester\.in\/<\/loc>/g)?.length,
     1,
   );
   assert.match(sitemap, /<lastmod>2026-09-24<\/lastmod>/);
@@ -76,28 +75,27 @@ test('documents local operation and deterministic deployment', async () => {
   const readme = await readRepositoryFile('README.md');
 
   assert.match(readme, /^# M\.N\. Polyester website$/m);
-  assert.match(readme, /https:\/\/mnpolyester\.github\.io\//);
+  assert.match(readme, /https:\/\/mnpolyester\.in\//);
   assert.match(readme, /python3 -m http\.server 4173/);
   assert.match(readme, /http:\/\/127\.0\.0\.1:4173\//);
   assert.match(readme, /node --test test\/\*\.test\.mjs/);
   assert.match(readme, /\.github\/workflows\/pages\.yml/);
-  assert.match(readme, /custom domain.+deliberately.+not configured/i);
-  assert.match(readme, /no `CNAME` file/i);
+  assert.match(readme, /custom domain.+`mnpolyester\.in`/i);
+  assert.match(readme, /`CNAME` file/i);
 });
 
-test('documents credential isolation and user-managed domain forwarding', async () => {
+test('documents credential isolation and custom-domain DNS safeguards', async () => {
   const readme = await readRepositoryFile('README.md');
-  const forwardingSection = readme.match(/## Optional domain forwarding\n([\s\S]*?)(?=\n## |$)/)?.[1];
+  const dnsSection = readme.match(/## DNS configuration\n([\s\S]*?)(?=\n## |$)/)?.[1];
 
-  assert.ok(forwardingSection, 'README must include an optional domain-forwarding section');
+  assert.ok(dnsSection, 'README must include a DNS configuration section');
   assert.match(
     readme,
     /Only the `mnpolyester` GitHub account may push or change Pages settings/,
   );
   assert.match(readme, /Never use `Arunothia-Marappan` credentials/);
-  assert.match(forwardingSection, /managed separately by the site owner/i);
-  assert.match(forwardingSection, /does not make.+custom domain/i);
-  assert.match(forwardingSection, /contact@mnpolyester\.in/);
-  assert.match(forwardingSection, /preserve.+mail.+records/i);
-  assert.doesNotMatch(forwardingSection, /set `mnpolyester\.in` as the repository custom domain/i);
+  assert.match(dnsSection, /GitHub Pages/i);
+  assert.match(dnsSection, /contact@mnpolyester\.in/);
+  assert.match(dnsSection, /preserve.+mail.+records/i);
+  assert.match(dnsSection, /remove.+forwarding/i);
 });
