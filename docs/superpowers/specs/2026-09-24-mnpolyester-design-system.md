@@ -163,6 +163,16 @@ Primary actions use a solid brand-blue background with white text. Secondary act
 
 Use a `3px` brand-blue focus outline with a `4px` offset on light surfaces. Override the outline to white for controls inside the brand-blue contact panel.
 
+The dialog close control sits over both dark dialog chrome and arbitrary photography, so it requires a dual-color focus indicator: a `2px` text-color inner outline at a `2px` offset plus a `5px` white outer ring. This treatment must replace, not merely inherit, the global focus rule:
+
+```css
+.image-dialog [data-dialog-close]:focus-visible {
+  outline: 2px solid var(--text);
+  outline-offset: 2px;
+  box-shadow: 0 0 0 5px var(--page);
+}
+```
+
 ### Product list
 
 Present products as a ruled, numbered list rather than individual cards. Product numbers use brand blue, not brand red. The number column, product name, and supporting qualifier should share a consistent baseline and collapse cleanly on narrow screens.
@@ -244,7 +254,11 @@ The required icon set is:
 - WhatsApp.
 - Close.
 
-Implement icons as simple inline SVGs with 2px outlines and `currentColor`, keeping stroke joins and caps consistent. The WhatsApp icon may use its recognizable authentic glyph where an outline abstraction would reduce clarity. Icons supplement visible labels; they must not replace necessary accessible names.
+Implement all eight icons as a code-native inline SVG symbol sprite with `<use>` instances. Use 2px `currentColor` outlines with round joins and caps; the WhatsApp symbol may use its recognizable authentic glyph where an outline abstraction would reduce clarity. The menu toggle uses Menu, each gallery control uses Zoom, the address uses Location, email actions use Mail, both telephone links use Phone, the WhatsApp action uses WhatsApp, directions uses External/arrow, and the dialog close button uses Close.
+
+Decorative icon instances use `aria-hidden="true"`; visible text remains beside action icons. Icons supplement labels and must never replace the menu's visually hidden label, link text, or the close button's accessible name.
+
+The image dialog must have `aria-labelledby` pointing to a visually hidden heading and `aria-describedby` pointing to its dynamic caption. Keep the close button's explicit accessible name. The caption text must be populated before `showModal()`.
 
 ## Responsive behavior
 

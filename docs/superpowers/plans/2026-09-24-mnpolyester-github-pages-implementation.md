@@ -168,7 +168,7 @@ test("includes canonical, sharing, and structural metadata", () => {
   assert.match(html, /<link rel="canonical" href="https:\/\/mnpolyester\.in\/"/);
   assert.match(html, /<meta property="og:title"/);
   assert.match(html, /<main id="main-content">/);
-  assert.match(html, /<h1>\s*Unsaturated Polyester Resin Manufacturer\s*<\/h1>/);
+  assert.match(html, /<h1[^>]*>\s*Unsaturated Polyester Resin Manufacturer\s*<\/h1>/);
 });
 ```
 
@@ -216,6 +216,16 @@ Create `index.html` with semantic `header`, `nav`, `main`, `section`, `address`,
     <script defer src="assets/js/main.js"></script>
   </head>
   <body>
+    <svg class="icon-sprite" aria-hidden="true" focusable="false">
+      <symbol id="icon-menu" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></symbol>
+      <symbol id="icon-external" viewBox="0 0 24 24"><path d="M14 5h5v5M19 5l-9 9M19 13v6H5V5h6"/></symbol>
+      <symbol id="icon-zoom" viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m15.5 15.5 4 4M8 10.5h5M10.5 8v5"/></symbol>
+      <symbol id="icon-location" viewBox="0 0 24 24"><path d="M20 10c0 5-8 11-8 11S4 15 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="2.5"/></symbol>
+      <symbol id="icon-mail" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m4 7 8 6 8-6"/></symbol>
+      <symbol id="icon-phone" viewBox="0 0 24 24"><path d="M7.2 3h3l1.4 4.6-2 1.7a15.3 15.3 0 0 0 5.1 5.1l1.7-2L21 13.8v3A4.2 4.2 0 0 1 16.8 21 13.8 13.8 0 0 1 3 7.2 4.2 4.2 0 0 1 7.2 3Z"/></symbol>
+      <symbol id="icon-whatsapp" viewBox="0 0 24 24"><path d="M20 11.6a8 8 0 0 1-11.8 7L4 20l1.4-4.1A8 8 0 1 1 20 11.6Z"/><path d="M8.6 8.1c.5 2.8 2.3 4.6 5.1 5.2l1.3-1.2 2.1 1.1c-.2 1.5-1.1 2.3-2.6 2.3-3.6-.2-6.8-3.4-7-7 0-1.4.7-2.3 2.2-2.5l1.1 2.1-1.2 1.3"/></symbol>
+      <symbol id="icon-close" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18"/></symbol>
+    </svg>
     <a class="skip-link" href="#main-content">Skip to content</a>
     <header class="site-header" data-header>
       <div class="site-header__inner shell">
@@ -223,12 +233,12 @@ Create `index.html` with semantic `header`, `nav`, `main`, `section`, `address`,
           <img src="assets/brand/mnpolyester-mark.svg" alt="M.N. Polyester">
         </a>
         <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="primary-navigation" data-nav-toggle>
-          <span class="sr-only">Toggle navigation</span><span aria-hidden="true"></span>
+          <span class="sr-only">Toggle navigation</span><svg class="icon" aria-hidden="true"><use href="#icon-menu"></use></svg>
         </button>
         <nav id="primary-navigation" class="site-nav" aria-label="Primary navigation" data-nav>
           <a href="#about">About</a><a href="#products">Products</a><a href="#factory">Factory</a><a href="#contact">Contact</a>
         </nav>
-        <a class="button button--small header-contact" href="mailto:contact@mnpolyester.in">Email us</a>
+        <a class="button button--small header-contact" href="mailto:contact@mnpolyester.in"><svg class="icon" aria-hidden="true"><use href="#icon-mail"></use></svg>Email us</a>
       </div>
     </header>
     <main id="main-content">
@@ -238,7 +248,7 @@ Create `index.html` with semantic `header`, `nav`, `main`, `section`, `address`,
             <h1 id="hero-title">Unsaturated Polyester Resin Manufacturer</h1>
             <p>Precision and quality in every batch, every time.</p>
             <div class="hero__actions">
-              <a class="button" href="mailto:contact@mnpolyester.in">Contact our team</a>
+              <a class="button" href="mailto:contact@mnpolyester.in"><svg class="icon" aria-hidden="true"><use href="#icon-mail"></use></svg>Contact our team</a>
               <a class="text-link" href="#products">View product range</a>
             </div>
           </div>
@@ -261,22 +271,35 @@ Create `index.html` with semantic `header`, `nav`, `main`, `section`, `address`,
         <div class="shell">
           <div class="section-heading"><div><p class="section-label">Our factory</p><h2 id="factory-title">Where every batch is made</h2></div><p>Explore our production floor, team, storage and dispatch operations.</p></div>
           <div class="gallery" data-gallery>
-            <button class="gallery__item" type="button" data-full="assets/images/factory-materials.jpg" data-caption="Four blue M.N.P resin containers in a row."><img src="assets/images/factory-materials.jpg" alt="Four blue M.N.P resin containers in a row." loading="lazy"></button>
-            <button class="gallery__item" type="button" data-full="assets/images/factory-floor.jpg" data-caption="Color-coded waste barrels labelled other waste, plastic, and paper/cotton."><img src="assets/images/factory-floor.jpg" alt="Color-coded waste barrels labelled other waste, plastic, and paper/cotton." loading="lazy"></button>
-            <button class="gallery__item media--edge-crop" type="button" data-edge-crop data-full="assets/images/factory-team.jpg" data-caption="Staff wearing protective equipment beside stored blue containers at the factory entrance."><img src="assets/images/factory-team.jpg" alt="Staff wearing protective equipment beside stored blue containers at the factory entrance." loading="lazy"></button>
-            <button class="gallery__item" type="button" data-full="assets/images/factory-process-1.jpg" data-caption="Worker handling a suspended material cage near stacked bags and blue containers inside the factory."><img src="assets/images/factory-process-1.jpg" alt="Worker handling a suspended material cage near stacked bags and blue containers inside the factory." loading="lazy"></button>
-            <button class="gallery__item" type="button" data-full="assets/images/factory-process-2.jpg" data-caption="Worker moving a blue M.N.P container among rows of stored containers."><img src="assets/images/factory-process-2.jpg" alt="Worker moving a blue M.N.P container among rows of stored containers." loading="lazy"></button>
-            <button class="gallery__item" type="button" data-full="assets/images/factory-storage.jpg" data-caption="Factory staff beside blue containers, raw-material bags, and color-coded bins."><img src="assets/images/factory-storage.jpg" alt="Factory staff beside blue containers, raw-material bags, and color-coded bins." loading="lazy"></button>
-            <button class="gallery__item" type="button" data-full="assets/images/factory-dispatch.jpg" data-caption="Worker using a backpack sprayer beside a delivery truck."><img src="assets/images/factory-dispatch.jpg" alt="Worker using a backpack sprayer beside a delivery truck." loading="lazy"></button>
+            <button class="gallery__item" type="button" data-full="assets/images/factory-materials.jpg" data-caption="Four blue M.N.P resin containers in a row."><img src="assets/images/factory-materials.jpg" alt="Four blue M.N.P resin containers in a row." loading="lazy"><span class="gallery__zoom" aria-hidden="true"><svg class="icon"><use href="#icon-zoom"></use></svg></span></button>
+            <button class="gallery__item" type="button" data-full="assets/images/factory-floor.jpg" data-caption="Color-coded waste barrels labelled other waste, plastic, and paper/cotton."><img src="assets/images/factory-floor.jpg" alt="Color-coded waste barrels labelled other waste, plastic, and paper/cotton." loading="lazy"><span class="gallery__zoom" aria-hidden="true"><svg class="icon"><use href="#icon-zoom"></use></svg></span></button>
+            <button class="gallery__item media--edge-crop" type="button" data-edge-crop data-full="assets/images/factory-team.jpg" data-caption="Staff wearing protective equipment beside stored blue containers at the factory entrance."><img src="assets/images/factory-team.jpg" alt="Staff wearing protective equipment beside stored blue containers at the factory entrance." loading="lazy"><span class="gallery__zoom" aria-hidden="true"><svg class="icon"><use href="#icon-zoom"></use></svg></span></button>
+            <button class="gallery__item" type="button" data-full="assets/images/factory-process-1.jpg" data-caption="Worker handling a suspended material cage near stacked bags and blue containers inside the factory."><img src="assets/images/factory-process-1.jpg" alt="Worker handling a suspended material cage near stacked bags and blue containers inside the factory." loading="lazy"><span class="gallery__zoom" aria-hidden="true"><svg class="icon"><use href="#icon-zoom"></use></svg></span></button>
+            <button class="gallery__item" type="button" data-full="assets/images/factory-process-2.jpg" data-caption="Worker moving a blue M.N.P container among rows of stored containers."><img src="assets/images/factory-process-2.jpg" alt="Worker moving a blue M.N.P container among rows of stored containers." loading="lazy"><span class="gallery__zoom" aria-hidden="true"><svg class="icon"><use href="#icon-zoom"></use></svg></span></button>
+            <button class="gallery__item" type="button" data-full="assets/images/factory-storage.jpg" data-caption="Factory staff beside blue containers, raw-material bags, and color-coded bins."><img src="assets/images/factory-storage.jpg" alt="Factory staff beside blue containers, raw-material bags, and color-coded bins." loading="lazy"><span class="gallery__zoom" aria-hidden="true"><svg class="icon"><use href="#icon-zoom"></use></svg></span></button>
+            <button class="gallery__item" type="button" data-full="assets/images/factory-dispatch.jpg" data-caption="Worker using a backpack sprayer beside a delivery truck."><img src="assets/images/factory-dispatch.jpg" alt="Worker using a backpack sprayer beside a delivery truck." loading="lazy"><span class="gallery__zoom" aria-hidden="true"><svg class="icon"><use href="#icon-zoom"></use></svg></span></button>
           </div>
         </div>
       </section>
       <section class="contact" id="contact" aria-labelledby="contact-title">
-        <div class="shell contact__grid"><div><p class="section-label">Contact us</p><h2 id="contact-title">Better yet, see us in person.</h2><p>We love our customers, so feel free to visit during normal business hours.</p><div class="contact-actions"><a class="button button--light" href="mailto:contact@mnpolyester.in">contact@mnpolyester.in</a><a class="button button--outline-light" href="https://wa.me/919442549200">Message us on WhatsApp</a></div><address><strong>M.N. Polyester</strong><br>Sales Office of M.N. Polyester (India) Pvt Ltd<br>7th Street, Tatabad, Coimbatore, Tamil Nadu, India<br><a href="tel:+919442549200">+91 94425 49200</a><br><a href="tel:+919442549490">+91 94425 49490</a></address></div><div class="hours-map"><table><caption>Business hours</caption><tbody><tr><th>Monday–Saturday</th><td>9:00 a.m.–7:00 p.m.</td></tr><tr><th>Sunday</th><td>Closed</td></tr></tbody></table><iframe title="Map to M.N. Polyester sales office" src="https://www.google.com/maps?q=11.0211825,76.962676&amp;z=14&amp;output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe><a class="text-link" href="https://maps.google.com/maps?ll=11.021183,76.962676&amp;z=14" target="_blank" rel="noreferrer">Get directions</a></div></div>
+        <div class="shell contact__grid">
+          <div>
+            <p class="section-label">Contact us</p><h2 id="contact-title">Better yet, see us in person.</h2><p>We love our customers, so feel free to visit during normal business hours.</p>
+            <div class="contact-actions">
+              <a class="button button--light" href="mailto:contact@mnpolyester.in"><svg class="icon" aria-hidden="true"><use href="#icon-mail"></use></svg>contact@mnpolyester.in</a>
+              <a class="button button--outline-light" href="https://wa.me/919442549200"><svg class="icon" aria-hidden="true"><use href="#icon-whatsapp"></use></svg>Message us on WhatsApp</a>
+            </div>
+            <div class="contact-detail">
+              <svg class="icon" aria-hidden="true"><use href="#icon-location"></use></svg>
+              <address><strong>M.N. Polyester</strong><br>Sales Office of M.N. Polyester (India) Pvt Ltd<br>7th Street, Tatabad, Coimbatore, Tamil Nadu, India<br><a href="tel:+919442549200"><svg class="icon" aria-hidden="true"><use href="#icon-phone"></use></svg>+91 94425 49200</a><br><a href="tel:+919442549490"><svg class="icon" aria-hidden="true"><use href="#icon-phone"></use></svg>+91 94425 49490</a></address>
+            </div>
+          </div>
+          <div class="hours-map"><table><caption>Business hours</caption><tbody><tr><th>Monday–Saturday</th><td>9:00 a.m.–7:00 p.m.</td></tr><tr><th>Sunday</th><td>Closed</td></tr></tbody></table><iframe title="Map to M.N. Polyester sales office" src="https://www.google.com/maps?q=11.0211825,76.962676&amp;z=14&amp;output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe><a class="text-link" href="https://maps.google.com/maps?ll=11.021183,76.962676&amp;z=14" target="_blank" rel="noreferrer">Get directions<svg class="icon" aria-hidden="true"><use href="#icon-external"></use></svg></a></div>
+        </div>
       </section>
     </main>
-    <footer class="site-footer"><div class="shell"><img src="assets/brand/mnpolyester-logo.svg" alt="M.N. Polyester"><p>Copyright © 2026 M.N. Polyester. All rights reserved.</p><a href="mailto:contact@mnpolyester.in">contact@mnpolyester.in</a></div></footer>
-    <dialog class="image-dialog" data-image-dialog><button type="button" aria-label="Close image" data-dialog-close><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2"/></svg></button><div class="image-dialog__media"><img src="assets/images/factory-materials.jpg" alt="" data-dialog-image></div><p data-dialog-caption></p></dialog>
+    <footer class="site-footer"><div class="shell"><img src="assets/brand/mnpolyester-logo.svg" alt="M.N. Polyester"><p>Copyright © 2026 M.N. Polyester. All rights reserved.</p><a href="mailto:contact@mnpolyester.in"><svg class="icon" aria-hidden="true"><use href="#icon-mail"></use></svg>contact@mnpolyester.in</a></div></footer>
+    <dialog class="image-dialog" aria-labelledby="factory-dialog-title" aria-describedby="factory-dialog-caption" data-image-dialog><h2 class="sr-only" id="factory-dialog-title">Factory image preview</h2><button type="button" aria-label="Close image" data-dialog-close><svg class="icon" aria-hidden="true"><use href="#icon-close"></use></svg></button><div class="image-dialog__media"><img src="assets/images/factory-materials.jpg" alt="" data-dialog-image></div><p id="factory-dialog-caption" data-dialog-caption></p></dialog>
   </body>
 </html>
 ```
@@ -344,6 +367,8 @@ body { margin: 0; color: var(--text); background: var(--page); font-size: clamp(
 img { display: block; max-width: 100%; }
 a { color: inherit; }
 button, input, textarea { font: inherit; }
+.icon-sprite { position: absolute; width: 0; height: 0; overflow: hidden; }
+.icon { width: 20px; height: 20px; flex: 0 0 auto; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
 .shell { width: min(var(--container), calc(100% - (var(--gutter) * 2))); margin-inline: auto; }
 .section { padding-block: var(--section-space); }
 .section-label { margin: 0 0 var(--space-2); color: var(--brand-blue); font-size: .75rem; font-weight: 800; line-height: 1.2; letter-spacing: .14em; text-transform: uppercase; }
@@ -355,12 +380,12 @@ h3 { font-size: clamp(1.25rem, 2vw, 1.5rem); font-weight: 700; line-height: 1.2;
 .skip-link { position: fixed; z-index: 100; top: var(--space-3); left: var(--space-3); transform: translateY(-180%); padding: var(--space-2) var(--space-3); background: var(--page); }
 .skip-link:focus { transform: none; }
 .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
-.button { display: inline-flex; min-height: var(--button-min); align-items: center; justify-content: center; padding: var(--space-2) var(--button-inline-padding); border: 1px solid var(--brand-blue); border-radius: var(--radius-control); background: var(--brand-blue); color: var(--page); font-size: .9375rem; font-weight: 700; line-height: 1.2; letter-spacing: .01em; text-decoration: none; transition: transform var(--motion-fast) var(--motion-ease); }
+.button { display: inline-flex; min-height: var(--button-min); align-items: center; justify-content: center; gap: var(--space-1); padding: var(--space-2) var(--button-inline-padding); border: 1px solid var(--brand-blue); border-radius: var(--radius-control); background: var(--brand-blue); color: var(--page); font-size: .9375rem; font-weight: 700; line-height: 1.2; letter-spacing: .01em; text-decoration: none; transition: transform var(--motion-fast) var(--motion-ease); }
 .button:hover { transform: translateY(-2px); }
 .button--small { min-height: var(--control-min); padding: var(--space-2) var(--button-compact-inline-padding); }
 .button--light { border-color: var(--page); background: var(--page); color: var(--brand-blue); }
 .button--outline-light { border-color: var(--page); background: transparent; color: var(--page); }
-.text-link, .contact address a, .site-footer a { display: inline-flex; min-height: var(--control-min); align-items: center; }
+.text-link, .contact address a, .site-footer a { display: inline-flex; min-height: var(--control-min); align-items: center; gap: var(--space-1); }
 .text-link { color: var(--brand-blue); font-weight: 700; text-underline-offset: .28em; }
 .site-header { position: sticky; z-index: 20; top: 0; border-bottom: 1px solid var(--border); background: var(--page); }
 .site-header__inner { display: flex; min-height: 78px; align-items: center; gap: var(--space-5); }
@@ -388,10 +413,11 @@ h3 { font-size: clamp(1.25rem, 2vw, 1.5rem); font-weight: 700; line-height: 1.2;
 .section-heading { display: flex; justify-content: space-between; gap: var(--space-5); align-items: end; margin-bottom: var(--space-6); }
 .section-heading > p { max-width: 34ch; color: var(--muted); }
 .gallery { display: grid; grid-template-columns: repeat(12, 1fr); gap: var(--space-3); }
-.gallery__item { grid-column: span 4; min-height: 280px; padding: 0; border: 0; border-radius: var(--radius-media); background: var(--surface); cursor: zoom-in; overflow: hidden; }
+.gallery__item { position: relative; grid-column: span 4; min-height: 280px; padding: 0; border: 0; border-radius: var(--radius-media); background: var(--surface); cursor: zoom-in; overflow: hidden; }
 .gallery__item:first-child { grid-column: span 8; grid-row: span 2; }
 .gallery__item img { width: 100%; height: 100%; object-fit: cover; transition: transform var(--motion-fast) var(--motion-ease); }
 .gallery__item:hover img { transform: scale(1.02); }
+.gallery__zoom { position: absolute; z-index: 2; right: var(--space-2); bottom: var(--space-2); display: grid; width: var(--control-min); height: var(--control-min); place-items: center; border-radius: var(--radius-control); background: var(--page); color: var(--brand-blue); pointer-events: none; }
 .contact { padding-block: var(--section-space); background: var(--surface); color: var(--text); }
 .contact__grid { gap: 0; }
 .contact__grid > div { padding: clamp(var(--space-5), 5vw, var(--space-7)); }
@@ -400,7 +426,9 @@ h3 { font-size: clamp(1.25rem, 2vw, 1.5rem); font-weight: 700; line-height: 1.2;
 .contact__grid > div:first-child :focus-visible { outline-color: var(--page); }
 .hours-map { background: var(--page); }
 .contact__grid > div:first-child address a { color: inherit; }
-.contact address { margin-top: var(--space-6); font-style: normal; }
+.contact-detail { display: grid; grid-template-columns: var(--space-4) minmax(0, 1fr); gap: var(--space-2); align-items: start; margin-top: var(--space-6); }
+.contact-detail > .icon { margin-top: var(--space-1); }
+.contact address { margin: 0; font-style: normal; }
 .hours-map table { width: 100%; margin-bottom: var(--space-4); border-collapse: collapse; }
 .hours-map caption { margin-bottom: var(--space-2); text-align: left; font-weight: 800; }
 .hours-map th, .hours-map td { padding: var(--space-2) 0; border-bottom: 1px solid var(--border); text-align: left; }
@@ -409,12 +437,13 @@ h3 { font-size: clamp(1.25rem, 2vw, 1.5rem); font-weight: 700; line-height: 1.2;
 .site-footer .shell { display: flex; align-items: center; gap: var(--space-5); }
 .site-footer img { width: 135px; }
 .site-footer p { margin: 0 auto 0 0; color: var(--muted); }
-.image-dialog { width: min(960px, calc(100% - 32px)); padding: 0; border: 0; background: var(--text); color: var(--page); }
+.image-dialog { width: min(960px, calc(100% - (var(--gutter) * 2))); padding: 0; border: 0; background: var(--text); color: var(--page); }
 .image-dialog::backdrop { background: rgb(23 32 51 / 82%); }
 .image-dialog__media { overflow: hidden; }
 .image-dialog img { width: 100%; max-height: 78vh; object-fit: contain; }
 .image-dialog img[data-edge-crop] { transform: scale(1.0417); transform-origin: center; }
 .image-dialog button { position: absolute; top: var(--space-2); right: var(--space-2); display: grid; width: var(--control-min); height: var(--control-min); place-items: center; border: 0; border-radius: var(--radius-control); background: var(--page); color: var(--text); cursor: pointer; }
+.image-dialog [data-dialog-close]:focus-visible { outline: 2px solid var(--text); outline-offset: 2px; box-shadow: 0 0 0 5px var(--page); }
 .image-dialog button svg { width: 22px; height: 22px; }
 .image-dialog p { margin: 0; padding: var(--space-3) var(--space-4); }
 
@@ -422,7 +451,7 @@ h3 { font-size: clamp(1.25rem, 2vw, 1.5rem); font-weight: 700; line-height: 1.2;
   :root { --gutter: 24px; }
   .header-contact { display: none; }
   .nav-toggle { display: inline-grid; width: var(--control-min); height: var(--control-min); place-items: center; border: 1px solid var(--border); border-radius: var(--radius-control); background: var(--page); }
-  .nav-toggle span[aria-hidden] { width: 18px; height: 2px; background: var(--text); box-shadow: 0 -6px var(--text), 0 6px var(--text); }
+  .nav-toggle .icon { width: 22px; height: 22px; }
   .site-nav { position: absolute; top: 100%; right: 0; left: 0; display: none; flex-direction: column; padding: var(--space-4) var(--space-3); border-bottom: 1px solid var(--border); background: var(--page); }
   .site-nav[data-open="true"] { display: flex; }
   .hero { background: var(--surface); }
@@ -476,12 +505,29 @@ git commit -m "feat: add responsive industrial design system"
 Append this test:
 
 ```js
-test("exposes accessible navigation and gallery hooks", () => {
+test("exposes the complete accessible interaction contract", async () => {
+  const script = await readFile(resolve(root, "assets/js/main.js"), "utf8");
   assert.match(html, /aria-expanded="false"/);
   assert.match(html, /data-nav-toggle/);
-  assert.match(html, /<dialog[^>]+data-image-dialog/);
-  assert.match(html, /data-dialog-close/);
+  assert.match(html, /<dialog[^>]+aria-labelledby="factory-dialog-title"[^>]+aria-describedby="factory-dialog-caption"[^>]+data-image-dialog/);
+  assert.match(html, /id="factory-dialog-title"[^>]*>Factory image preview<\/h2>/);
+  assert.match(html, /id="factory-dialog-caption"[^>]*data-dialog-caption/);
+  assert.match(html, /aria-label="Close image"[^>]+data-dialog-close/);
   assert.match(html, /data-full="assets\/images\//);
+  assert.match(html, /data-edge-crop/);
+
+  for (const icon of ["menu", "external", "zoom", "location", "mail", "phone", "whatsapp", "close"]) {
+    assert.match(html, new RegExp(`<symbol id="icon-${icon}"`));
+    assert.match(html, new RegExp(`href="#icon-${icon}"`));
+  }
+
+  const galleryItems = html.match(/data-full="assets\/images\//g) ?? [];
+  const zoomIcons = html.match(/href="#icon-zoom"/g) ?? [];
+  assert.equal(zoomIcons.length, galleryItems.length, "every gallery control needs a zoom icon");
+
+  assert.match(script, /navToggle\?\.addEventListener\("click"/);
+  assert.match(script, /dialog\.showModal\(\)/);
+  assert.match(script, /toggleAttribute\("data-edge-crop",\s*button\.hasAttribute\("data-edge-crop"\)\)/);
 });
 ```
 
@@ -489,7 +535,7 @@ test("exposes accessible navigation and gallery hooks", () => {
 
 Run: `node --test test/site-content.test.mjs`
 
-Expected: FAIL until all gallery buttons and `assets/js/main.js` exist.
+Expected: FAIL while the HTML hooks are incomplete, `assets/js/main.js` is absent or empty, or edge-crop propagation is missing. It passes only after the complete interaction contract is implemented.
 
 - [ ] **Step 3: Implement `assets/js/main.js`**
 
