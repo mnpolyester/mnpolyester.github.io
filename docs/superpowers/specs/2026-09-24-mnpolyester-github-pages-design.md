@@ -43,7 +43,7 @@ The website asset set will contain:
 
 - The complete logo with the original “INDIA PVT LTD” line in SVG and transparent high-resolution PNG formats.
 - An authentic mark-only variant that removes only the tiny legal line for placements where it would be unreadable.
-- A square favicon and touch-icon variant derived from the existing red N oval, without inventing a new symbol.
+- A square favicon and touch-icon variant containing the complete existing M–N–P mark, centered without distortion or invented symbolism.
 
 SVG will be preferred in the website so the logo remains sharp at every size. PNG exports will be retained for sharing, social metadata, and systems that cannot use SVG.
 

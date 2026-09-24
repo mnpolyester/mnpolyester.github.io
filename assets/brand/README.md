@@ -12,7 +12,7 @@ These files are faithful, deterministic vector traces of the existing M.N. Polye
 
 - `mnpolyester-logo.svg` — complete transparent vector logo, including “INDIA PVT LTD”. Use this by default when the legal line remains readable.
 - `mnpolyester-mark.svg` — complete M–N–P mark without the tiny legal line. Use for compact headers and other small placements.
-- `mnpolyester-favicon.svg` — square favicon derived from the existing red N oval.
+- `mnpolyester-favicon.svg` — the complete M–N–P mark, centered without distortion on a square favicon canvas.
 - `mnpolyester-logo-1400.png` and `mnpolyester-logo-2800.png` — transparent raster exports of the complete logo.
 - `mnpolyester-mark-1400.png` and `mnpolyester-mark-2800.png` — transparent raster exports of the compact mark.
 - `favicon-32.png`, `favicon-192.png`, `favicon-512.png`, and `apple-touch-icon.png` — browser and device icons.
