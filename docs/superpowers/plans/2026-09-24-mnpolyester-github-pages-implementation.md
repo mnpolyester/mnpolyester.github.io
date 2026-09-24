@@ -242,7 +242,7 @@ Create `index.html` with semantic `header`, `nav`, `main`, `section`, `address`,
               <a class="text-link" href="#products">View product range</a>
             </div>
           </div>
-          <figure class="hero__media media--edge-crop"><img src="assets/images/hero-team.jpg" alt="M.N. Polyester factory team wearing protective equipment" width="1200" height="900"></figure>
+          <figure class="hero__media media--edge-crop"><img src="assets/images/hero-team.jpg" alt="Factory staff wearing hard hats, masks and gloves outside the facility." width="1200" height="900"></figure>
         </div>
       </section>
       <section class="section about" id="about" aria-labelledby="about-title">
@@ -253,7 +253,7 @@ Create `index.html` with semantic `header`, `nav`, `main`, `section`, `address`,
       </section>
       <section class="section products" id="products" aria-labelledby="products-title">
         <div class="shell products__grid">
-          <figure><img src="assets/images/product-drums.jpg" alt="Blue M.N. Polyester resin drums" width="800" height="500"></figure>
+          <figure><img src="assets/images/product-drums.jpg" alt="Three blue resin drums labelled “RESIN” in English and Tamil." width="800" height="500"></figure>
           <div><p class="section-label">Our product range</p><h2 id="products-title">Resins and gelcoats for composite applications</h2><ol class="product-list"><li>GP Resin with and without UV Stabilization</li><li>GP Resin Superior with and without UVS</li><li>GP Gelcoat only with UVS</li><li>ISO Resin with and without UVS</li><li>ISO Gelcoat only with UVS</li><li>ROOFLITE Resin with and without UVS</li><li>F.R.R Resin with and without UVS</li></ol></div>
         </div>
       </section>
@@ -261,13 +261,13 @@ Create `index.html` with semantic `header`, `nav`, `main`, `section`, `address`,
         <div class="shell">
           <div class="section-heading"><div><p class="section-label">Our factory</p><h2 id="factory-title">Where every batch is made</h2></div><p>Explore our production floor, team, storage and dispatch operations.</p></div>
           <div class="gallery" data-gallery>
-            <button class="gallery__item" type="button" data-full="assets/images/factory-materials.jpg" data-caption="Blue M.N. Polyester resin containers ready for use"><img src="assets/images/factory-materials.jpg" alt="Blue M.N. Polyester resin containers lined up at the factory" loading="lazy"></button>
-            <button class="gallery__item" type="button" data-full="assets/images/factory-floor.jpg" data-caption="Clearly labelled waste-separation barrels at the factory"><img src="assets/images/factory-floor.jpg" alt="Colour-coded waste-separation barrels labelled for paper, plastic and other waste" loading="lazy"></button>
-            <button class="gallery__item media--edge-crop" type="button" data-full="assets/images/factory-team.jpg" data-caption="Factory team wearing protective equipment"><img src="assets/images/factory-team.jpg" alt="M.N. Polyester factory staff in hard hats, masks and protective gloves" loading="lazy"></button>
-            <button class="gallery__item" type="button" data-full="assets/images/factory-process-1.jpg" data-caption="Production work inside the M.N. Polyester factory"><img src="assets/images/factory-process-1.jpg" alt="Factory worker handling resin containers beside raw-material bags" loading="lazy"></button>
-            <button class="gallery__item" type="button" data-full="assets/images/factory-process-2.jpg" data-caption="M.N. Polyester containers moving through the factory"><img src="assets/images/factory-process-2.jpg" alt="Factory worker moving a blue M.N. Polyester resin container" loading="lazy"></button>
-            <button class="gallery__item" type="button" data-full="assets/images/factory-storage.jpg" data-caption="Factory storage and production area"><img src="assets/images/factory-storage.jpg" alt="Factory staff beside stored containers and stacked raw-material bags" loading="lazy"></button>
-            <button class="gallery__item" type="button" data-full="assets/images/factory-dispatch.jpg" data-caption="Dispatch preparation beside a delivery truck"><img src="assets/images/factory-dispatch.jpg" alt="Worker using a backpack sprayer beside a delivery truck" loading="lazy"></button>
+            <button class="gallery__item" type="button" data-full="assets/images/factory-materials.jpg" data-caption="Four blue M.N.P resin containers in a row."><img src="assets/images/factory-materials.jpg" alt="Four blue M.N.P resin containers in a row." loading="lazy"></button>
+            <button class="gallery__item" type="button" data-full="assets/images/factory-floor.jpg" data-caption="Color-coded waste barrels labelled other waste, plastic, and paper/cotton."><img src="assets/images/factory-floor.jpg" alt="Color-coded waste barrels labelled other waste, plastic, and paper/cotton." loading="lazy"></button>
+            <button class="gallery__item media--edge-crop" type="button" data-edge-crop data-full="assets/images/factory-team.jpg" data-caption="Staff wearing protective equipment beside stored blue containers at the factory entrance."><img src="assets/images/factory-team.jpg" alt="Staff wearing protective equipment beside stored blue containers at the factory entrance." loading="lazy"></button>
+            <button class="gallery__item" type="button" data-full="assets/images/factory-process-1.jpg" data-caption="Worker handling a suspended material cage near stacked bags and blue containers inside the factory."><img src="assets/images/factory-process-1.jpg" alt="Worker handling a suspended material cage near stacked bags and blue containers inside the factory." loading="lazy"></button>
+            <button class="gallery__item" type="button" data-full="assets/images/factory-process-2.jpg" data-caption="Worker moving a blue M.N.P container among rows of stored containers."><img src="assets/images/factory-process-2.jpg" alt="Worker moving a blue M.N.P container among rows of stored containers." loading="lazy"></button>
+            <button class="gallery__item" type="button" data-full="assets/images/factory-storage.jpg" data-caption="Factory staff beside blue containers, raw-material bags, and color-coded bins."><img src="assets/images/factory-storage.jpg" alt="Factory staff beside blue containers, raw-material bags, and color-coded bins." loading="lazy"></button>
+            <button class="gallery__item" type="button" data-full="assets/images/factory-dispatch.jpg" data-caption="Worker using a backpack sprayer beside a delivery truck."><img src="assets/images/factory-dispatch.jpg" alt="Worker using a backpack sprayer beside a delivery truck." loading="lazy"></button>
           </div>
         </div>
       </section>
@@ -276,7 +276,7 @@ Create `index.html` with semantic `header`, `nav`, `main`, `section`, `address`,
       </section>
     </main>
     <footer class="site-footer"><div class="shell"><img src="assets/brand/mnpolyester-logo.svg" alt="M.N. Polyester"><p>Copyright © 2026 M.N. Polyester. All rights reserved.</p><a href="mailto:contact@mnpolyester.in">contact@mnpolyester.in</a></div></footer>
-    <dialog class="image-dialog" data-image-dialog><button type="button" aria-label="Close image" data-dialog-close><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2"/></svg></button><img src="assets/images/factory-materials.jpg" alt="" data-dialog-image><p data-dialog-caption></p></dialog>
+    <dialog class="image-dialog" data-image-dialog><button type="button" aria-label="Close image" data-dialog-close><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2"/></svg></button><div class="image-dialog__media"><img src="assets/images/factory-materials.jpg" alt="" data-dialog-image></div><p data-dialog-caption></p></dialog>
   </body>
 </html>
 ```
@@ -327,6 +327,8 @@ Implement the approved concepts with the following design-system foundations:
   --radius-media: 12px;
   --control-min: 44px;
   --button-min: 48px;
+  --button-inline-padding: 20px;
+  --button-compact-inline-padding: 14px;
   --motion-fast: 160ms;
   --motion-base: 240ms;
   --motion-ease: cubic-bezier(.2, .8, .2, 1);
@@ -344,26 +346,27 @@ a { color: inherit; }
 button, input, textarea { font: inherit; }
 .shell { width: min(var(--container), calc(100% - (var(--gutter) * 2))); margin-inline: auto; }
 .section { padding-block: var(--section-space); }
-.section-label { margin: 0 0 var(--space-2); color: var(--brand-red); font-size: .75rem; font-weight: 800; line-height: 1.2; letter-spacing: .14em; text-transform: uppercase; }
+.section-label { margin: 0 0 var(--space-2); color: var(--brand-blue); font-size: .75rem; font-weight: 800; line-height: 1.2; letter-spacing: .14em; text-transform: uppercase; }
 h1, h2, h3, p { margin-top: 0; }
 h1 { max-width: 12ch; font-size: clamp(2.5rem, 6vw, 4.75rem); font-weight: 800; line-height: 1; letter-spacing: -.045em; }
 h2 { max-width: 14ch; font-size: clamp(2rem, 4vw, 3.25rem); font-weight: 800; line-height: 1.06; letter-spacing: -.035em; }
 h3 { font-size: clamp(1.25rem, 2vw, 1.5rem); font-weight: 700; line-height: 1.2; letter-spacing: -.02em; }
-:focus-visible { outline: 3px solid var(--brand-red); outline-offset: 4px; }
+:focus-visible { outline: 3px solid var(--brand-blue); outline-offset: 4px; }
 .skip-link { position: fixed; z-index: 100; top: var(--space-3); left: var(--space-3); transform: translateY(-180%); padding: var(--space-2) var(--space-3); background: var(--page); }
 .skip-link:focus { transform: none; }
 .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
-.button { display: inline-flex; min-height: var(--button-min); align-items: center; justify-content: center; padding: var(--space-2) 20px; border: 1px solid var(--brand-blue); border-radius: var(--radius-control); background: var(--brand-blue); color: var(--page); font-size: .9375rem; font-weight: 700; line-height: 1.2; letter-spacing: .01em; text-decoration: none; transition: transform var(--motion-fast) var(--motion-ease); }
+.button { display: inline-flex; min-height: var(--button-min); align-items: center; justify-content: center; padding: var(--space-2) var(--button-inline-padding); border: 1px solid var(--brand-blue); border-radius: var(--radius-control); background: var(--brand-blue); color: var(--page); font-size: .9375rem; font-weight: 700; line-height: 1.2; letter-spacing: .01em; text-decoration: none; transition: transform var(--motion-fast) var(--motion-ease); }
 .button:hover { transform: translateY(-2px); }
-.button--small { min-height: var(--control-min); padding: var(--space-2) 14px; }
+.button--small { min-height: var(--control-min); padding: var(--space-2) var(--button-compact-inline-padding); }
 .button--light { border-color: var(--page); background: var(--page); color: var(--brand-blue); }
-.button--outline-light { border-color: var(--page); background: transparent; }
+.button--outline-light { border-color: var(--page); background: transparent; color: var(--page); }
+.text-link, .contact address a, .site-footer a { display: inline-flex; min-height: var(--control-min); align-items: center; }
 .text-link { color: var(--brand-blue); font-weight: 700; text-underline-offset: .28em; }
 .site-header { position: sticky; z-index: 20; top: 0; border-bottom: 1px solid var(--border); background: var(--page); }
 .site-header__inner { display: flex; min-height: 78px; align-items: center; gap: var(--space-5); }
-.brand { margin-right: auto; }
+.brand { display: inline-flex; min-height: var(--control-min); align-items: center; margin-right: auto; }
 .brand img { width: 164px; height: auto; }
-.site-nav { display: flex; gap: 1.65rem; }
+.site-nav { display: flex; gap: var(--space-4); }
 .site-nav a { min-height: var(--control-min); display: inline-flex; align-items: center; font-size: .9375rem; font-weight: 700; line-height: 1.2; letter-spacing: .01em; text-decoration: none; }
 .nav-toggle { display: none; }
 .hero { overflow: hidden; padding-block: clamp(var(--space-5), 5vw, var(--space-7)); background: var(--surface); }
@@ -381,7 +384,7 @@ h3 { font-size: clamp(1.25rem, 2vw, 1.5rem); font-weight: 700; line-height: 1.2;
 .products figure img { width: 100%; height: 100%; min-height: 480px; border-radius: var(--radius-media); object-fit: cover; }
 .product-list { margin: var(--space-5) 0 0; padding: 0; list-style: none; counter-reset: products; }
 .product-list li { display: grid; grid-template-columns: 2.5rem 1fr; gap: var(--space-2); padding-block: var(--space-2); border-top: 1px solid var(--border); counter-increment: products; }
-.product-list li::before { content: counter(products, decimal-leading-zero); color: var(--brand-red); font-weight: 800; }
+.product-list li::before { content: counter(products, decimal-leading-zero); color: var(--brand-blue); font-weight: 800; }
 .section-heading { display: flex; justify-content: space-between; gap: var(--space-5); align-items: end; margin-bottom: var(--space-6); }
 .section-heading > p { max-width: 34ch; color: var(--muted); }
 .gallery { display: grid; grid-template-columns: repeat(12, 1fr); gap: var(--space-3); }
@@ -393,12 +396,14 @@ h3 { font-size: clamp(1.25rem, 2vw, 1.5rem); font-weight: 700; line-height: 1.2;
 .contact__grid { gap: 0; }
 .contact__grid > div { padding: clamp(var(--space-5), 5vw, var(--space-7)); }
 .contact__grid > div:first-child { background: var(--brand-blue); color: var(--page); }
+.contact__grid > div:first-child .section-label { color: var(--page); }
+.contact__grid > div:first-child :focus-visible { outline-color: var(--page); }
 .hours-map { background: var(--page); }
-.contact__grid > div:first-child a { color: inherit; }
+.contact__grid > div:first-child address a { color: inherit; }
 .contact address { margin-top: var(--space-6); font-style: normal; }
 .hours-map table { width: 100%; margin-bottom: var(--space-4); border-collapse: collapse; }
 .hours-map caption { margin-bottom: var(--space-2); text-align: left; font-weight: 800; }
-.hours-map th, .hours-map td { padding: .7rem 0; border-bottom: 1px solid var(--border); text-align: left; }
+.hours-map th, .hours-map td { padding: var(--space-2) 0; border-bottom: 1px solid var(--border); text-align: left; }
 .hours-map iframe { width: 100%; min-height: 320px; border: 0; }
 .site-footer { padding-block: var(--space-5); border-top: 1px solid var(--border); }
 .site-footer .shell { display: flex; align-items: center; gap: var(--space-5); }
@@ -406,17 +411,19 @@ h3 { font-size: clamp(1.25rem, 2vw, 1.5rem); font-weight: 700; line-height: 1.2;
 .site-footer p { margin: 0 auto 0 0; color: var(--muted); }
 .image-dialog { width: min(960px, calc(100% - 32px)); padding: 0; border: 0; background: var(--text); color: var(--page); }
 .image-dialog::backdrop { background: rgb(23 32 51 / 82%); }
+.image-dialog__media { overflow: hidden; }
 .image-dialog img { width: 100%; max-height: 78vh; object-fit: contain; }
+.image-dialog img[data-edge-crop] { transform: scale(1.0417); transform-origin: center; }
 .image-dialog button { position: absolute; top: var(--space-2); right: var(--space-2); display: grid; width: var(--control-min); height: var(--control-min); place-items: center; border: 0; border-radius: var(--radius-control); background: var(--page); color: var(--text); cursor: pointer; }
 .image-dialog button svg { width: 22px; height: 22px; }
-.image-dialog p { margin: 0; padding: var(--space-3) 20px; }
+.image-dialog p { margin: 0; padding: var(--space-3) var(--space-4); }
 
 @media (max-width: 800px) {
   :root { --gutter: 24px; }
   .header-contact { display: none; }
   .nav-toggle { display: inline-grid; width: var(--control-min); height: var(--control-min); place-items: center; border: 1px solid var(--border); border-radius: var(--radius-control); background: var(--page); }
   .nav-toggle span[aria-hidden] { width: 18px; height: 2px; background: var(--text); box-shadow: 0 -6px var(--text), 0 6px var(--text); }
-  .site-nav { position: absolute; top: 100%; right: 0; left: 0; display: none; flex-direction: column; padding: 20px var(--space-3); border-bottom: 1px solid var(--border); background: var(--page); }
+  .site-nav { position: absolute; top: 100%; right: 0; left: 0; display: none; flex-direction: column; padding: var(--space-4) var(--space-3); border-bottom: 1px solid var(--border); background: var(--page); }
   .site-nav[data-open="true"] { display: flex; }
   .hero { background: var(--surface); }
   .hero__copy, .about__grid, .products__grid, .contact__grid { grid-template-columns: 1fr; }
@@ -436,9 +443,10 @@ h3 { font-size: clamp(1.25rem, 2vw, 1.5rem); font-weight: 700; line-height: 1.2;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  html { scroll-behavior: auto; }
+  :root { scroll-behavior: auto; }
   *, *::before, *::after { animation: none !important; transition: none !important; }
   [data-reveal], .button, .gallery__item img { opacity: 1 !important; transform: none !important; }
+  .image-dialog img[data-edge-crop] { transform: scale(1.0417) !important; }
 }
 ```
 
@@ -515,6 +523,7 @@ document.querySelector("[data-gallery]")?.addEventListener("click", (event) => {
   if (!(dialogImage instanceof HTMLImageElement) || !image) return;
   dialogImage.src = button.dataset.full ?? image.src;
   dialogImage.alt = image.alt;
+  dialogImage.toggleAttribute("data-edge-crop", button.hasAttribute("data-edge-crop"));
   if (dialogCaption) dialogCaption.textContent = button.dataset.caption ?? image.alt;
   dialog.showModal();
 });

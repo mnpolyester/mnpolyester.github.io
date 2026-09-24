@@ -45,10 +45,12 @@ Do not add an eyebrow, kicker, badge, statistics, certifications, or supplementa
 | Text | `#172033` | Headings and primary copy |
 | Muted | `#475569` | Supporting copy and metadata |
 | Brand blue | `#2E3192` | Primary actions, links, strong accents |
-| Brand red | `#ED1C24` | Small authentic brand accents only |
+| Brand red | `#ED1C24` | Decorative rules and accent shapes only; never small text or focus indicators |
 | Border | `#D9E1EA` | Rules, frames, dividers, and control borders |
 
 Use solid colors only. Gradients are prohibited. Do not apply a color overlay, tint, blend mode, or artificial color treatment to photographs.
+
+Use brand blue for section labels, product numbers, links, and focus outlines on white or cool-steel surfaces. On the brand-blue contact panel, labels, inline links, outlined-button text/borders, and focus outlines use white. Preserve brand red in the palette for non-text decorative details only.
 
 ## Typography
 
@@ -109,6 +111,8 @@ Use these exact implementation tokens:
   --radius-media: 12px;
   --control-min: 44px;
   --button-min: 48px;
+  --button-inline-padding: 20px;
+  --button-compact-inline-padding: 14px;
   --motion-fast: 160ms;
   --motion-base: 240ms;
   --motion-ease: cubic-bezier(.2, .8, .2, 1);
@@ -129,7 +133,7 @@ Use these exact implementation tokens:
 }
 ```
 
-The spacing scale is the only default source for gaps, padding, and margins. Use `--section-space` for primary section padding and the fixed steps for internal rhythm.
+Use the spacing scale for layout gaps, padding, and margins, with `--section-space` for primary section padding. The two documented button-padding tokens are the only component-specific spacing exceptions. Exact icon geometry, image/frame heights, border widths, and media dimensions may use documented component values because they are not layout rhythm.
 
 ### Responsive breakpoints
 
@@ -141,8 +145,8 @@ Do not add intermediary layout breakpoints unless browser verification demonstra
 
 ### Shape and control dimensions
 
-- Standard buttons: minimum height `48px`, horizontal padding `20px`, radius `8px`.
-- Compact header button: minimum height `44px`, horizontal padding `14px`, radius `8px`.
+- Standard buttons: minimum height `48px`, horizontal padding `var(--button-inline-padding)` (`20px`), radius `8px`.
+- Compact header button: minimum height `44px`, horizontal padding `var(--button-compact-inline-padding)` (`14px`), radius `8px`.
 - Icon-only controls: exactly `44px × 44px`, radius `8px`.
 - Media frames: radius `12px`.
 - All other sections, lists, split panels, and structural surfaces remain square-cornered.
@@ -151,15 +155,17 @@ Do not add intermediary layout breakpoints unless browser verification demonstra
 
 ### Header and navigation
 
-The sticky header should be quiet and compact, with a solid page background, a subtle bottom border, the local vector logo, simple anchor links, and a clearly visible focus state. On mobile, replace the navigation row with an accessible menu toggle and a vertically stacked navigation panel.
+The sticky header should be quiet and compact, with a solid page background, a subtle bottom border, the local vector logo, simple anchor links, and a clearly visible focus state. The brand link must be an inline-flex control with a minimum `44px` target. On mobile, replace the navigation row with an accessible menu toggle and a vertically stacked navigation panel.
 
 ### Buttons and links
 
-Primary actions use a solid brand-blue background with white text. Secondary actions use an outlined treatment with brand-blue text and border. Keep labels direct and provide a minimum 44px interactive target. Text links may use a small external/arrow icon where it clarifies destination or movement.
+Primary actions use a solid brand-blue background with white text. Secondary actions on light surfaces use an outlined treatment with brand-blue text and border. The inverse secondary-button variant on the brand-blue contact panel uses white text and a white border. Keep labels direct and provide a minimum 44px interactive target. Text links, contact inline links, and footer links must use inline-flex alignment with a minimum `44px` height. A text link may use a small external/arrow icon where it clarifies destination or movement.
+
+Use a `3px` brand-blue focus outline with a `4px` offset on light surfaces. Override the outline to white for controls inside the brand-blue contact panel.
 
 ### Product list
 
-Present products as a ruled, numbered list rather than individual cards. The number column, product name, and supporting qualifier should share a consistent baseline and collapse cleanly on narrow screens.
+Present products as a ruled, numbered list rather than individual cards. Product numbers use brand blue, not brand red. The number column, product name, and supporting qualifier should share a consistent baseline and collapse cleanly on narrow screens.
 
 ### Factory gallery
 
@@ -167,7 +173,7 @@ Use an editorial composition with one large anchor frame and smaller supporting 
 
 ### Contact section
 
-Use a blue/white split composition: direct contact information on the strong blue panel, and the map plus opening hours on a white or cool-steel panel. Keep email, phone, WhatsApp, address, and directions as ordinary functional links when appropriate. Frame the map cleanly and show hours in a simple table, not separate cards.
+Use a blue/white split composition: direct contact information on the strong blue panel, and the map plus opening hours on a white or cool-steel panel. The contact-panel section label is white. Keep email, phone, WhatsApp, address, and directions as ordinary functional links when appropriate. Frame the map cleanly and show hours in a simple table, not separate cards.
 
 ### Footer
 
@@ -175,7 +181,7 @@ Use a restrained footer with the approved logo or company name, copyright, and c
 
 ## Authentic media inventory
 
-Use only the local image assets below with the associated truthful descriptions. These descriptions are the source of truth for accessible alternative text; adjust punctuation or brevity only when the surrounding caption already conveys the same information.
+Use only the local image assets below. The descriptions are authoritative: use them exactly as each production image's alternative text. Gallery captions may be shorter, but they must remain factual.
 
 | Asset | Truthful content / alt text |
 | --- | --- |
@@ -193,7 +199,7 @@ The hero must show `hero-team.jpg` naturally and untreated. Do not place a blue 
 
 ### Intentional capture-edge crop
 
-`hero-team.jpg` and `factory-team.jpg` contain thin, baked-in near-white borders from the original capture. Do not edit, retouch, or regenerate either source file. Crop only the outer 1–3% in CSS. The standard implementation uses a 2% crop on every edge:
+`hero-team.jpg` and `factory-team.jpg` contain thin, baked-in near-white borders from the original capture. Do not edit, retouch, or regenerate either source file. Crop only the outer 1–3% in CSS. Apply the correction to the hero, the gallery thumbnail, and the dialog display. The standard hero/thumbnail implementation uses a 2% crop on every edge:
 
 ```css
 .media--edge-crop {
@@ -212,7 +218,18 @@ The hero must show `hero-team.jpg` naturally and untreated. Do not place a blue 
 }
 ```
 
-Focal-position adjustments may keep people comfortably framed, but the border correction must remain within the outer 1–3%. Do not add a filter, overlay, tint, contrast adjustment, saturation adjustment, blend mode, or any other color/tone treatment.
+For the dialog, put the image inside an overflow-hidden media wrapper and toggle a `data-edge-crop` attribute on the dialog image when `factory-team.jpg` opens. A static `scale(1.0417)` crops approximately 2% from each source edge:
+
+```css
+.image-dialog__media { overflow: hidden; }
+
+.image-dialog img[data-edge-crop] {
+  transform: scale(1.0417);
+  transform-origin: center;
+}
+```
+
+This transform is a static capture correction, not motion, and must remain applied under reduced-motion preferences. Focal-position adjustments may keep people comfortably framed, but the border correction must remain within the outer 1–3%. Do not add a filter, overlay, tint, contrast adjustment, saturation adjustment, blend mode, or any other color/tone treatment.
 
 ## Icon inventory
 
@@ -247,7 +264,7 @@ Disable motion completely when reduced motion is requested:
 
 ```css
 @media (prefers-reduced-motion: reduce) {
-  html { scroll-behavior: auto; }
+  :root { scroll-behavior: auto; }
 
   *, *::before, *::after {
     animation: none !important;
@@ -259,6 +276,10 @@ Disable motion completely when reduced motion is requested:
   .gallery__item img {
     opacity: 1 !important;
     transform: none !important;
+  }
+
+  .image-dialog img[data-edge-crop] {
+    transform: scale(1.0417) !important;
   }
 }
 ```
