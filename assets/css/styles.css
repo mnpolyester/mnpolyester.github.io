@@ -88,7 +88,8 @@ a {
   outline-offset: 4px;
 }
 
-section[id] {
+section[id],
+#main-content {
   scroll-margin-top: calc(var(--space-7) + var(--space-5));
 }
 
@@ -291,10 +292,14 @@ h3 {
     text-decoration-color var(--motion-fast) var(--motion-ease);
 }
 
-.site-nav a:hover,
-.site-nav a:focus-visible {
+.site-nav a:hover {
   color: var(--brand-blue);
   text-decoration-color: var(--brand-red);
+}
+
+.site-nav a:focus-visible {
+  color: var(--brand-blue);
+  text-decoration-color: currentColor;
 }
 
 .nav-toggle {
@@ -516,28 +521,28 @@ h3 {
 }
 
 .gallery__item:nth-child(1) {
-  grid-column: 1 / span 3;
-  grid-row: 4 / span 2;
-}
-
-.gallery__item:nth-child(2) {
-  grid-column: 4 / span 3;
-  grid-row: 4 / span 2;
-}
-
-.gallery__item:nth-child(3) {
   grid-column: 1 / span 7;
   grid-row: 1 / span 3;
 }
 
-.gallery__item:nth-child(4) {
+.gallery__item:nth-child(2) {
   grid-column: 8 / span 5;
   grid-row: 1 / span 2;
 }
 
-.gallery__item:nth-child(5) {
+.gallery__item:nth-child(3) {
   grid-column: 8 / span 5;
   grid-row: 3;
+}
+
+.gallery__item:nth-child(4) {
+  grid-column: 1 / span 3;
+  grid-row: 4 / span 2;
+}
+
+.gallery__item:nth-child(5) {
+  grid-column: 4 / span 3;
+  grid-row: 4 / span 2;
 }
 
 .gallery__item:nth-child(6) {
@@ -777,6 +782,11 @@ h3 {
   box-shadow: 0 24px 80px rgba(23, 32, 51, .35);
 }
 
+.image-dialog[open] {
+  display: grid;
+  grid-template-rows: minmax(0, 1fr) auto;
+}
+
 .image-dialog::backdrop {
   background: rgba(23, 32, 51, .84);
 }
@@ -784,7 +794,8 @@ h3 {
 .image-dialog__media {
   position: relative;
   display: grid;
-  max-height: 78vh;
+  min-height: 0;
+  max-height: calc(100vh - (var(--gutter) * 2) - 56px);
   overflow: hidden;
   background: var(--text);
   place-items: center;
@@ -794,7 +805,7 @@ h3 {
   width: auto;
   max-width: 100%;
   height: auto;
-  max-height: 78vh;
+  max-height: 100%;
   object-fit: contain;
   transform-origin: center;
 }
@@ -827,10 +838,13 @@ h3 {
 
 .image-dialog > p {
   min-height: 56px;
+  max-height: min(30vh, calc(var(--space-8) + var(--space-6)));
   padding: var(--space-3) var(--space-4);
+  overflow-y: auto;
   color: var(--border);
   font-size: .9375rem;
   line-height: 1.5;
+  overflow-wrap: anywhere;
 }
 
 @media (max-width: 800px) {
