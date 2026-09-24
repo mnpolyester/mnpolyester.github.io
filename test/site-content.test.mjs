@@ -194,6 +194,33 @@ function extractElementTexts(markup, tagName) {
   return elementTexts;
 }
 
+function extractElements(markup, tagName) {
+  const openElements = [];
+  const elements = [];
+
+  for (const token of parseTagTokens(markup)) {
+    if (token.name !== tagName) {
+      continue;
+    }
+
+    if (!token.isClosing) {
+      openElements.push(token);
+      continue;
+    }
+
+    const openingToken = openElements.pop();
+    if (openingToken) {
+      elements.push({
+        attributes: openingToken.attributes,
+        content: markup.slice(openingToken.end, token.start),
+        start: openingToken.start,
+      });
+    }
+  }
+
+  return elements.sort((left, right) => left.start - right.start);
+}
+
 function hasRelToken(attributes, expectedToken) {
   const relTokens = attributes.get('rel')?.toLowerCase().split(/\s+/) ?? [];
   return relTokens.includes(expectedToken);
@@ -456,4 +483,148 @@ test('includes canonical, sharing, and structural metadata', () => {
     ),
     'Expected an active body <h1> whose normalized visible text exactly matches the approved heading',
   );
+});
+
+test('defines the accessible navigation and gallery interaction contract', async () => {
+  const script = await readFile(path.join(repositoryRoot, 'assets/js/main.js'), 'utf8');
+  const buttons = extractElements(bodyRegion ?? '', 'button');
+  const navToggle = buttons.find(({ attributes }) => attributes.has('data-nav-toggle'));
+  const primaryNav = findTag(bodyTags, 'nav', (attributes) => attributes.has('data-nav'));
+  const dialog = extractElements(bodyRegion ?? '', 'dialog').find(({ attributes }) => {
+    return attributes.has('data-image-dialog');
+  });
+
+  assert.ok(navToggle, 'Expected the navigation toggle to be an actual <button>');
+  assert.equal(navToggle.attributes.get('aria-expanded'), 'false');
+  assert.equal(navToggle.attributes.get('aria-controls'), 'primary-navigation');
+  assert.ok(primaryNav, 'Expected the primary navigation to be an actual <nav>');
+  assert.equal(primaryNav.attributes.get('id'), 'primary-navigation');
+
+  assert.ok(dialog, 'Expected the image preview to be an actual <dialog>');
+  assert.equal(dialog.attributes.get('aria-labelledby'), 'gallery-dialog-title');
+  assert.equal(dialog.attributes.get('aria-describedby'), 'gallery-dialog-caption');
+
+  const dialogElements = parseStartTags(dialog.content);
+  const dialogTitle = extractElements(dialog.content, 'h2').find(({ attributes }) => {
+    return attributes.get('id') === 'gallery-dialog-title';
+  });
+  const dialogCaption = findTag(dialogElements, 'p', (attributes) => {
+    return attributes.get('id') === 'gallery-dialog-caption'
+      && attributes.has('data-dialog-caption');
+  });
+  const dialogClose = findTag(dialogElements, 'button', (attributes) => {
+    return attributes.has('data-dialog-close');
+  });
+  const dialogImage = findTag(dialogElements, 'img', (attributes) => {
+    return attributes.has('data-dialog-image');
+  });
+
+  assert.ok(dialogTitle, 'Expected the dialog to have its labelled heading');
+  assert.equal(extractVisibleText(dialogTitle.content), 'Factory image preview');
+  assert.ok(
+    dialogTitle.attributes.get('class')?.split(/\s+/).includes('sr-only'),
+    'Expected the dialog heading to be visually hidden',
+  );
+  assert.ok(dialogCaption, 'Expected the dialog to have its described caption hook');
+  assert.ok(dialogClose, 'Expected the dialog to have a close-button hook');
+  assert.equal(dialogClose.attributes.get('aria-label'), 'Close image');
+  assert.ok(dialogImage, 'Expected the dialog to have an image hook');
+
+  const gallery = extractElements(bodyRegion ?? '', 'div').find(({ attributes }) => {
+    return attributes.has('data-gallery');
+  });
+  assert.ok(gallery, 'Expected the factory gallery hook');
+
+  const expectedGalleryPaths = new Set([
+    'assets/images/factory-materials.jpg',
+    'assets/images/factory-floor.jpg',
+    'assets/images/factory-team.jpg',
+    'assets/images/factory-process-1.jpg',
+    'assets/images/factory-process-2.jpg',
+    'assets/images/factory-storage.jpg',
+    'assets/images/factory-dispatch.jpg',
+  ]);
+  const galleryButtons = extractElements(gallery.content, 'button').filter(({ attributes }) => {
+    return attributes.has('data-full');
+  });
+  assert.equal(galleryButtons.length, 7, 'Expected exactly seven gallery button controls');
+
+  for (const galleryButton of galleryButtons) {
+    const fullPath = galleryButton.attributes.get('data-full');
+    assert.ok(
+      expectedGalleryPaths.delete(fullPath),
+      `Unexpected or duplicate gallery path: ${fullPath}`,
+    );
+    assert.equal(galleryButton.attributes.get('aria-haspopup'), 'dialog');
+    assert.ok(
+      findTag(parseStartTags(galleryButton.content), 'use', (attributes) => {
+        return attributes.get('href') === '#icon-zoom';
+      }),
+      `Expected ${fullPath} control to contain the zoom icon`,
+    );
+  }
+  assert.equal(expectedGalleryPaths.size, 0, 'Expected every approved gallery image path');
+
+  const factoryTeamButton = galleryButtons.find(({ attributes }) => {
+    return attributes.get('data-full') === 'assets/images/factory-team.jpg';
+  });
+  assert.ok(factoryTeamButton?.attributes.has('data-edge-crop'));
+
+  const expectedIconIds = [
+    'icon-menu',
+    'icon-external',
+    'icon-zoom',
+    'icon-location',
+    'icon-mail',
+    'icon-phone',
+    'icon-whatsapp',
+    'icon-close',
+  ];
+  const symbolIds = collectAttributeValues(bodyTags, 'symbol', 'id');
+  const useHrefs = collectAttributeValues(bodyTags, 'use', 'href');
+  for (const iconId of expectedIconIds) {
+    assert.ok(symbolIds.has(iconId), `Expected SVG symbol #${iconId}`);
+    assert.ok(useHrefs.has(`#${iconId}`), `Expected at least one use of #${iconId}`);
+  }
+
+  assert.match(script, /querySelector\(["']\[data-nav-toggle\]["']\)/);
+  assert.match(script, /querySelector\(["']\[data-nav\]["']\)/);
+  assert.match(script, /navToggle\.addEventListener\(["']click["']/);
+  assert.match(
+    script,
+    /navToggle\.addEventListener\(["']click["'][\s\S]{0,240}setNavOpen\(isOpen\)/,
+  );
+  assert.match(script, /setAttribute\(["']aria-expanded["'],\s*String\(isOpen\)\)/);
+  assert.match(script, /nav\.setAttribute\(["']data-open["'],\s*["']true["']\)/);
+  assert.match(script, /nav\.removeAttribute\(["']data-open["']\)/);
+  assert.match(script, /nav\.addEventListener\(["']click["']/);
+  assert.match(script, /closest\(["']a["']\)/);
+  assert.match(script, /setNavOpen\(false\)/);
+  assert.match(script, /event\.key\s*!==\s*["']Escape["']/);
+  assert.match(script, /navToggle\.focus\(\)/);
+
+  assert.match(script, /querySelector\(["']\[data-gallery\]["']\)/);
+  assert.match(script, /querySelector\(["']\[data-image-dialog\]["']\)/);
+  assert.match(script, /gallery\.addEventListener\(["']click["']/);
+  assert.match(script, /closest\(["']button\[data-full\]["']\)/);
+  assert.match(script, /button\.querySelector\(["']img["']\)/);
+  assert.match(script, /button\.dataset\.full\s*\|\|\s*sourceImage\.currentSrc\s*\|\|\s*sourceImage\.src/);
+  assert.match(script, /const imageAlt\s*=\s*sourceImage\.alt/);
+  assert.match(script, /dialogImage\.src\s*=\s*imageSource/);
+  assert.match(script, /dialogImage\.alt\s*=\s*imageAlt/);
+  assert.match(script, /dialogCaption\.textContent\s*=\s*imageAlt/);
+  assert.match(
+    script,
+    /dialogImage\.toggleAttribute\("data-edge-crop", button\.hasAttribute\("data-edge-crop"\)\);/,
+  );
+  assert.match(script, /dialog\.showModal\(\)/);
+  assert.match(script, /dialogClose\.addEventListener\(["']click["']/);
+  assert.match(script, /event\.target\s*===\s*dialog/);
+  assert.ok(
+    script.match(/dialog\.close\(\)/g)?.length >= 2,
+    'Expected close-button and backdrop close paths',
+  );
+  assert.match(script, /dialog\.addEventListener\(["']close["']/);
+  assert.match(script, /dialogOpener\?\.isConnected/);
+  assert.match(script, /dialogOpener\.focus\(\)/);
 });
