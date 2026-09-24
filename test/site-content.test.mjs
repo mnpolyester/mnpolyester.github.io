@@ -459,10 +459,10 @@ test('includes canonical, sharing, and structural metadata', () => {
     findTag(headTags, 'link', (attributes) => {
       return (
         hasRelToken(attributes, 'canonical')
-        && attributes.get('href') === 'https://mnpolyester.in/'
+        && attributes.get('href') === 'https://mnpolyester.github.io/'
       );
     }),
-    'Expected a head canonical <link> with exact href="https://mnpolyester.in/"',
+    'Expected a head canonical <link> with exact href="https://mnpolyester.github.io/"',
   );
   assert.ok(
     findTag(headTags, 'meta', (attributes) => {
@@ -472,6 +472,25 @@ test('includes canonical, sharing, and structural metadata', () => {
       );
     }),
     'Expected a <meta property="og:title"> element with non-empty content',
+  );
+  assert.ok(
+    findTag(headTags, 'meta', (attributes) => {
+      return (
+        attributes.get('property')?.toLowerCase() === 'og:url'
+        && attributes.get('content') === 'https://mnpolyester.github.io/'
+      );
+    }),
+    'Expected an Open Graph URL for https://mnpolyester.github.io/',
+  );
+  assert.ok(
+    findTag(headTags, 'meta', (attributes) => {
+      return (
+        attributes.get('property')?.toLowerCase() === 'og:image'
+        && attributes.get('content')
+          === 'https://mnpolyester.github.io/assets/brand/mnpolyester-logo-1400.png'
+      );
+    }),
+    'Expected an absolute GitHub Pages Open Graph image URL',
   );
   assert.ok(
     findTag(bodyTags, 'main', (attributes) => attributes.get('id') === 'main-content'),

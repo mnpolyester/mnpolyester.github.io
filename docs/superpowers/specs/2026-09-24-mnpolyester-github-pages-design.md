@@ -2,7 +2,7 @@
 
 ## Purpose
 
-Replace the current GoDaddy-hosted website with a lightweight, modern, single-page website hosted on GitHub Pages at `mnpolyester.in`. The redesign should feel more polished while remaining as simple as the current site and preserving its established content, factory photography, and contact details.
+Replace the current GoDaddy-hosted website with a lightweight, modern, single-page website hosted independently at `https://mnpolyester.github.io/`. The redesign should feel more polished while remaining as simple as the current site and preserving its established content, factory photography, and contact details.
 
 ## Audience and goals
 
@@ -56,9 +56,9 @@ Repository deliverables will include:
 - `index.html` for the page structure and content.
 - Styles and minimal behavior in focused static asset files.
 - Locally hosted, optimized versions of the existing site photographs and the approved logo asset set.
-- `CNAME` containing `mnpolyester.in`.
+- `.nojekyll` so GitHub Pages publishes the static files unchanged; no `CNAME` is included because no Pages custom domain is configured.
 - Basic metadata, social sharing metadata, favicon assets, robots directives, and a sitemap where appropriate.
-- A concise README explaining local preview, GitHub Pages setup, and DNS records.
+- A concise README explaining local preview, GitHub Pages deployment, account safety, and the boundary between this repository and any owner-managed domain forwarding.
 
 All resource paths will work from the repository root on GitHub Pages. The site will not require a paid hosting service, package installation, server process, database, analytics account, or API key.
 
@@ -70,11 +70,11 @@ There will be no contact form because a static form would need an external submi
 
 If an external service is unavailable, the core company information and contact details remain visible as ordinary text. Images will use stable local files rather than hotlinking the GoDaddy-hosted originals.
 
-## Hosting and domain migration
+## Hosting and optional forwarding
 
-GitHub Pages will publish the repository from the configured branch and serve the custom domain `mnpolyester.in`. The apex domain should point to GitHub Pages using GitHub’s current documented DNS records, and `www.mnpolyester.in` should be configured as the canonical companion host when the DNS provider supports it. HTTPS enforcement should be enabled after GitHub issues the certificate.
+GitHub Pages will publish the repository through GitHub Actions and serve `https://mnpolyester.github.io/` as the canonical website. The repository and Pages settings will not declare `mnpolyester.in` as a custom domain, so the GitHub URL remains directly accessible and does not redirect to the company domain.
 
-The domain registration must remain active even though GoDaddy website-builder hosting can be discontinued. DNS changes will only be made after the new GitHub Pages deployment has been verified, minimizing downtime.
+If the site owner later forwards `mnpolyester.in` to the GitHub Pages URL through GoDaddy, that is an independent registrar configuration outside this repository. The company email remains `contact@mnpolyester.in`, and mail-related DNS records must remain intact. This project will not make GoDaddy or DNS changes.
 
 ## Credential and release constraints
 
@@ -88,7 +88,7 @@ Before release, the site will be checked for:
 - Correct official email address and all phone, WhatsApp, map, and navigation links.
 - Desktop and mobile layout, keyboard navigation, visible focus styles, contrast, and reduced-motion behavior.
 - Successful loading of every local image and absence of browser console errors.
-- Valid static paths, custom-domain configuration, and a clean Git working tree.
+- Valid static paths, absence of a Pages custom domain, and a clean Git working tree.
 - Visual fidelity to the approved modern redesign concept at representative desktop and mobile sizes.
 
-DNS cutover will be verified separately by checking GitHub Pages status, HTTPS availability, apex-domain resolution, and `www` behavior.
+Release verification will confirm that GitHub Pages reports no custom domain and that `https://mnpolyester.github.io/` returns the site directly over HTTPS without redirecting to `mnpolyester.in`.

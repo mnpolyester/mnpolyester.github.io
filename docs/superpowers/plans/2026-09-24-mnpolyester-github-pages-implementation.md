@@ -2,9 +2,9 @@
 
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
 
-**Goal:** Build, verify, publish, and connect a fast single-page M.N. Polyester website at `mnpolyester.in` using GitHub Pages while preserving the company’s original content, photography, and corrected full-mark favicon.
+**Goal:** Build, verify, and publish a fast single-page M.N. Polyester website independently at `https://mnpolyester.github.io/` while preserving the company’s original content, photography, and corrected full-mark favicon.
 
-**Architecture:** The site is a dependency-free static document served from the repository root. Semantic HTML owns the content, one CSS file owns the responsive visual system, and one small JavaScript file owns the mobile navigation and gallery dialog. GitHub Actions deploys the root directory to GitHub Pages; DNS cutover happens only after a successful preview deployment and only through a verified `mnpolyester` account.
+**Architecture:** The site is a dependency-free static document served from the repository root. Semantic HTML owns the content, one CSS file owns the responsive visual system, and one small JavaScript file owns the mobile navigation and gallery dialog. GitHub Actions deploys the root directory to the default GitHub Pages host through a verified `mnpolyester` account. No Pages custom domain or repository-managed DNS cutover is part of this deployment.
 
 **Tech Stack:** HTML5, modern CSS, vanilla JavaScript, Node.js built-in test runner, GitHub Pages, GitHub Actions
 
@@ -21,9 +21,9 @@
 - `assets/brand/*` — approved vector logo, compact mark, favicon, and raster exports.
 - `test/site-content.test.mjs` — static regression checks for content, links, images, metadata, and file references.
 - `test/brand-assets.test.mjs` — existing full-M–N–P favicon regression check.
-- `CNAME`, `robots.txt`, `sitemap.xml`, `.nojekyll` — custom-domain and crawler configuration.
+- `robots.txt`, `sitemap.xml`, `.nojekyll` — default-domain crawler and static-hosting configuration; no `CNAME` file.
 - `.github/workflows/pages.yml` — deterministic GitHub Pages deployment.
-- `README.md` — local preview, deployment, account-safety, and DNS instructions.
+- `README.md` — local preview, deployment, account safety, and owner-managed forwarding boundary.
 - `docs/superpowers/specs/assets/concept-*.png` — approved visual references used for fidelity QA.
 
 ### Task 1: Establish visual references and local photography
@@ -165,7 +165,7 @@ test("uses the approved local brand and factory assets", async () => {
 test("includes canonical, sharing, and structural metadata", () => {
   assert.match(html, /<html lang="en">/);
   assert.match(html, /<meta name="description"/);
-  assert.match(html, /<link rel="canonical" href="https:\/\/mnpolyester\.in\/"/);
+  assert.match(html, /<link rel="canonical" href="https:\/\/mnpolyester\.github\.io\/"/);
   assert.match(html, /<meta property="og:title"/);
   assert.match(html, /<main id="main-content">/);
   assert.match(html, /<h1[^>]*>\s*Unsaturated Polyester Resin Manufacturer\s*<\/h1>/);
@@ -202,12 +202,12 @@ Create `index.html` with semantic `header`, `nav`, `main`, `section`, `address`,
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="M.N. Polyester supplies unsaturated polyester resins, gelcoats and specialised resin solutions from Coimbatore, Tamil Nadu.">
     <meta name="theme-color" content="#2E3192">
-    <link rel="canonical" href="https://mnpolyester.in/">
+    <link rel="canonical" href="https://mnpolyester.github.io/">
     <meta property="og:type" content="website">
     <meta property="og:title" content="M.N. Polyester | Unsaturated Polyester Resin Manufacturer">
     <meta property="og:description" content="Precision and quality in every batch, every time.">
-    <meta property="og:url" content="https://mnpolyester.in/">
-    <meta property="og:image" content="https://mnpolyester.in/assets/brand/mnpolyester-logo-1400.png">
+    <meta property="og:url" content="https://mnpolyester.github.io/">
+    <meta property="og:image" content="https://mnpolyester.github.io/assets/brand/mnpolyester-logo-1400.png">
     <title>M.N. Polyester | Unsaturated Polyester Resin Manufacturer</title>
     <link rel="icon" href="assets/brand/mnpolyester-favicon.svg" type="image/svg+xml">
     <link rel="icon" href="assets/brand/favicon-32.png" sizes="32x32" type="image/png">
@@ -596,23 +596,16 @@ git add assets/js/main.js index.html test/site-content.test.mjs
 git commit -m "feat: add navigation and factory gallery interactions"
 ```
 
-### Task 6: Add GitHub Pages, domain, and crawler configuration
+### Task 6: Add GitHub Pages and default-domain crawler configuration
 
 **Files:**
-- Create: `CNAME`
 - Create: `.nojekyll`
 - Create: `robots.txt`
 - Create: `sitemap.xml`
 - Create: `.github/workflows/pages.yml`
 - Modify: `README.md`
 
-- [ ] **Step 1: Add the custom domain and static-hosting markers**
-
-`CNAME`:
-
-```text
-mnpolyester.in
-```
+- [ ] **Step 1: Add the default-domain crawler and static-hosting markers**
 
 `.nojekyll` is an empty file.
 
@@ -622,7 +615,7 @@ mnpolyester.in
 User-agent: *
 Allow: /
 
-Sitemap: https://mnpolyester.in/sitemap.xml
+Sitemap: https://mnpolyester.github.io/sitemap.xml
 ```
 
 `sitemap.xml`:
@@ -631,7 +624,7 @@ Sitemap: https://mnpolyester.in/sitemap.xml
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://mnpolyester.in/</loc>
+    <loc>https://mnpolyester.github.io/</loc>
     <lastmod>2026-09-24</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
@@ -684,7 +677,7 @@ Document:
 ```markdown
 # M.N. Polyester website
 
-Static website for [mnpolyester.in](https://mnpolyester.in/), hosted with GitHub Pages.
+Static website for M.N. Polyester, hosted directly at [mnpolyester.github.io](https://mnpolyester.github.io/).
 
 ## Local preview
 
@@ -696,19 +689,19 @@ Run `node --test test/*.test.mjs`.
 
 ## Deployment
 
-Pushes to `main` deploy through `.github/workflows/pages.yml`. The repository custom domain is declared in `CNAME`.
+Pushes to `main` deploy through `.github/workflows/pages.yml`. No custom domain is configured and no `CNAME` file is present, so `https://mnpolyester.github.io/` remains the canonical site.
 
 Only the `mnpolyester` GitHub account may push or change Pages settings for this repository. Do not use `Arunothia-Marappan` credentials.
 ```
 
-Add a DNS section only after verifying GitHub’s current official Pages records during release.
+Document that any optional GoDaddy forwarding is owner-managed, outside this repository, and must preserve the mail records for `contact@mnpolyester.in`.
 
 - [ ] **Step 4: Test configuration files**
 
 Run:
 
 ```bash
-test "$(cat CNAME)" = "mnpolyester.in"
+test ! -e CNAME
 xmllint --noout sitemap.xml
 node --test test/*.test.mjs
 git diff --check
@@ -719,8 +712,8 @@ Expected: every command exits 0.
 - [ ] **Step 5: Commit hosting configuration**
 
 ```bash
-git add CNAME .nojekyll robots.txt sitemap.xml .github/workflows/pages.yml README.md
-git commit -m "chore: configure GitHub Pages and custom domain"
+git add .nojekyll robots.txt sitemap.xml .github/workflows/pages.yml README.md
+git commit -m "chore: configure default GitHub Pages domain"
 ```
 
 ### Task 7: Browser, responsive, and fidelity verification
@@ -779,7 +772,7 @@ git add index.html assets/css/styles.css assets/js/main.js test
 git commit -m "fix: complete responsive and accessibility QA"
 ```
 
-### Task 8: Release through `mnpolyester` and cut over DNS
+### Task 8: Release independently at `mnpolyester.github.io`
 
 **Files:**
 - No source changes unless release verification finds a defect.
@@ -806,31 +799,29 @@ Run: `git push origin main`
 
 Expected: the `main` branch updates on `mnpolyester/mnpolyester.github.io`.
 
-- [ ] **Step 4: Enable or verify Pages deployment**
+- [ ] **Step 4: Clear the Pages custom domain and preserve workflow deployment**
 
-Use the verified `mnpolyester` account to select GitHub Actions as the Pages source if it is not already configured. Wait for the Pages workflow, verify its conclusion is successful, and test the temporary `https://mnpolyester.github.io/` URL before DNS changes.
+Use the verified `mnpolyester` account to select GitHub Actions as the Pages source if it is not already configured. Remove any custom-domain value from the repository's Pages settings while preserving `build_type: workflow`.
 
-- [ ] **Step 5: Verify current official GitHub Pages DNS records**
+- [ ] **Step 5: Verify the deployment and Pages settings**
 
-Consult GitHub’s official custom-domain documentation immediately before changing DNS. Do not rely on stale copied addresses. Confirm the required apex A/AAAA records and the `www` CNAME target for `mnpolyester.github.io`.
+Wait for the Pages workflow to complete successfully. Query the repository's Pages settings and confirm that the custom domain is empty and the published URL is `https://mnpolyester.github.io/`.
 
-- [ ] **Step 6: Confirm the exact DNS mutation at action time**
+- [ ] **Step 6: Verify the independent public URL**
 
-Show the user the resolved current records, explain that changing them will move live traffic from GoDaddy hosting to GitHub Pages, and obtain the required action-time confirmation before saving DNS changes.
+Verify:
 
-- [ ] **Step 7: Cut over and verify without cancelling the domain**
-
-Update only the web-hosting DNS records, preserve mail-related MX/TXT records for `contact@mnpolyester.in`, and do not cancel the domain registration. Verify:
-
-```bash
-dig +short mnpolyester.in A
-dig +short www.mnpolyester.in CNAME
-curl -I https://mnpolyester.in/
-curl -I https://www.mnpolyester.in/
+```sh
+curl -I https://mnpolyester.github.io/
+curl -sS https://mnpolyester.github.io/
 ```
 
-Expected: DNS resolves to GitHub Pages; HTTPS returns a successful response; `www` behaves consistently with the canonical apex domain; email DNS records remain unchanged.
+Expected: the GitHub Pages URL returns the website directly over HTTPS with no redirect to `mnpolyester.in`, and the document declares the GitHub Pages URL as canonical.
 
-- [ ] **Step 8: Enable HTTPS and hand off**
+- [ ] **Step 7: Preserve the owner-managed forwarding boundary**
 
-After GitHub provisions the certificate, enable HTTPS enforcement. Re-run desktop and mobile smoke tests on the live domain. Only then tell the user the GoDaddy website-builder plan can be cancelled; retain the domain registration and email service.
+Do not change GoDaddy, DNS, domain registration, or mail records. Any optional forwarding from `mnpolyester.in` is performed separately by the site owner, and `contact@mnpolyester.in` remains the official company email.
+
+- [ ] **Step 8: Hand off**
+
+Report the successful workflow, direct GitHub Pages URL, empty custom-domain setting, and live response verification. Remind the user that GoDaddy forwarding remains their separate task.
