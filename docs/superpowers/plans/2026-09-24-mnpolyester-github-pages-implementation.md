@@ -8,6 +8,8 @@
 
 **Tech Stack:** HTML5, modern CSS, vanilla JavaScript, Node.js built-in test runner, GitHub Pages, GitHub Actions
 
+**Design source of truth:** The approved design specification and `docs/superpowers/specs/2026-09-24-mnpolyester-design-system.md` control the implementation. Code in this plan is an implementation aid; if an illustrative snippet conflicts with either approved document, follow the design system.
+
 ---
 
 ## File structure
@@ -49,7 +51,7 @@ Use the frontend design workflow and the existing logo/photos as references. Gen
 Product: M.N. Polyester, a South Indian unsaturated polyester resin manufacturer.
 Audience: industrial buyers and existing customers.
 Information architecture: header; split hero; about and seven-product list; authentic factory gallery; contact details, hours, map, and footer.
-Brand: preserve the approved MNP logo, #2E3192 blue, #ED1C24 red, crisp white, and a restrained steel-blue neutral.
+Brand: preserve the approved MNP logo, #2E3192 blue, #ED1C24 red, #FFFFFF white, and the #F5F7FA cool-steel surface.
 Style: modern, simple, industrial, airy, rectangular rather than rounded-card-heavy.
 Copy: preserve the approved specification; do not invent statistics, certifications, claims, badges, testimonials, or products.
 Assets: use authentic factory photography; no generated factory scenes or replacement logo.
@@ -199,7 +201,7 @@ Create `index.html` with semantic `header`, `nav`, `main`, `section`, `address`,
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="M.N. Polyester supplies unsaturated polyester resins, gelcoats and specialised resin solutions from Coimbatore, Tamil Nadu.">
-    <meta name="theme-color" content="#2e3192">
+    <meta name="theme-color" content="#2E3192">
     <link rel="canonical" href="https://mnpolyester.in/">
     <meta property="og:type" content="website">
     <meta property="og:title" content="M.N. Polyester | Unsaturated Polyester Resin Manufacturer">
@@ -240,7 +242,7 @@ Create `index.html` with semantic `header`, `nav`, `main`, `section`, `address`,
               <a class="text-link" href="#products">View product range</a>
             </div>
           </div>
-          <figure class="hero__media"><img src="assets/images/hero-team.jpg" alt="M.N. Polyester factory team wearing protective equipment" width="1200" height="900"></figure>
+          <figure class="hero__media media--edge-crop"><img src="assets/images/hero-team.jpg" alt="M.N. Polyester factory team wearing protective equipment" width="1200" height="900"></figure>
         </div>
       </section>
       <section class="section about" id="about" aria-labelledby="about-title">
@@ -261,7 +263,7 @@ Create `index.html` with semantic `header`, `nav`, `main`, `section`, `address`,
           <div class="gallery" data-gallery>
             <button class="gallery__item" type="button" data-full="assets/images/factory-materials.jpg" data-caption="Blue M.N. Polyester resin containers ready for use"><img src="assets/images/factory-materials.jpg" alt="Blue M.N. Polyester resin containers lined up at the factory" loading="lazy"></button>
             <button class="gallery__item" type="button" data-full="assets/images/factory-floor.jpg" data-caption="Clearly labelled waste-separation barrels at the factory"><img src="assets/images/factory-floor.jpg" alt="Colour-coded waste-separation barrels labelled for paper, plastic and other waste" loading="lazy"></button>
-            <button class="gallery__item" type="button" data-full="assets/images/factory-team.jpg" data-caption="Factory team wearing protective equipment"><img src="assets/images/factory-team.jpg" alt="M.N. Polyester factory staff in hard hats, masks and protective gloves" loading="lazy"></button>
+            <button class="gallery__item media--edge-crop" type="button" data-full="assets/images/factory-team.jpg" data-caption="Factory team wearing protective equipment"><img src="assets/images/factory-team.jpg" alt="M.N. Polyester factory staff in hard hats, masks and protective gloves" loading="lazy"></button>
             <button class="gallery__item" type="button" data-full="assets/images/factory-process-1.jpg" data-caption="Production work inside the M.N. Polyester factory"><img src="assets/images/factory-process-1.jpg" alt="Factory worker handling resin containers beside raw-material bags" loading="lazy"></button>
             <button class="gallery__item" type="button" data-full="assets/images/factory-process-2.jpg" data-caption="M.N. Polyester containers moving through the factory"><img src="assets/images/factory-process-2.jpg" alt="Factory worker moving a blue M.N. Polyester resin container" loading="lazy"></button>
             <button class="gallery__item" type="button" data-full="assets/images/factory-storage.jpg" data-caption="Factory storage and production area"><img src="assets/images/factory-storage.jpg" alt="Factory staff beside stored containers and stacked raw-material bags" loading="lazy"></button>
@@ -270,7 +272,7 @@ Create `index.html` with semantic `header`, `nav`, `main`, `section`, `address`,
         </div>
       </section>
       <section class="contact" id="contact" aria-labelledby="contact-title">
-        <div class="shell contact__grid"><div><p class="section-label">Contact us</p><h2 id="contact-title">Better yet, see us in person.</h2><p>We love our customers, so feel free to visit during normal business hours.</p><div class="contact-actions"><a class="button button--light" href="mailto:contact@mnpolyester.in">contact@mnpolyester.in</a><a class="button button--outline-light" href="https://wa.me/919442549200">Message us on WhatsApp</a></div><address><strong>M.N. Polyester</strong><br>Sales Office of M.N. Polyester (India) Pvt Ltd<br>7th Street, Tatabad, Coimbatore, Tamil Nadu, India<br><a href="tel:+919442549200">+91 94425 49200</a><br><a href="tel:+919442549490">+91 94425 49490</a></address></div><div class="hours-map"><table><caption>Business hours</caption><tbody><tr><th>Monday–Saturday</th><td>9:00 a.m.–7:00 p.m.</td></tr><tr><th>Sunday</th><td>Closed</td></tr></tbody></table><iframe title="Map to M.N. Polyester sales office" src="https://www.google.com/maps?q=11.0211825,76.962676&amp;z=14&amp;output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe><a class="text-link text-link--light" href="https://maps.google.com/maps?ll=11.021183,76.962676&amp;z=14" target="_blank" rel="noreferrer">Get directions</a></div></div>
+        <div class="shell contact__grid"><div><p class="section-label">Contact us</p><h2 id="contact-title">Better yet, see us in person.</h2><p>We love our customers, so feel free to visit during normal business hours.</p><div class="contact-actions"><a class="button button--light" href="mailto:contact@mnpolyester.in">contact@mnpolyester.in</a><a class="button button--outline-light" href="https://wa.me/919442549200">Message us on WhatsApp</a></div><address><strong>M.N. Polyester</strong><br>Sales Office of M.N. Polyester (India) Pvt Ltd<br>7th Street, Tatabad, Coimbatore, Tamil Nadu, India<br><a href="tel:+919442549200">+91 94425 49200</a><br><a href="tel:+919442549490">+91 94425 49490</a></address></div><div class="hours-map"><table><caption>Business hours</caption><tbody><tr><th>Monday–Saturday</th><td>9:00 a.m.–7:00 p.m.</td></tr><tr><th>Sunday</th><td>Closed</td></tr></tbody></table><iframe title="Map to M.N. Polyester sales office" src="https://www.google.com/maps?q=11.0211825,76.962676&amp;z=14&amp;output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe><a class="text-link" href="https://maps.google.com/maps?ll=11.021183,76.962676&amp;z=14" target="_blank" rel="noreferrer">Get directions</a></div></div>
       </section>
     </main>
     <footer class="site-footer"><div class="shell"><img src="assets/brand/mnpolyester-logo.svg" alt="M.N. Polyester"><p>Copyright © 2026 M.N. Polyester. All rights reserved.</p><a href="mailto:contact@mnpolyester.in">contact@mnpolyester.in</a></div></footer>
@@ -299,111 +301,126 @@ git commit -m "feat: add company website content"
 
 - [ ] **Step 1: Create the shared design tokens and component rules**
 
-Implement the approved concepts with these locked foundations:
+Implement the approved concepts with the following design-system foundations:
 
 ```css
 :root {
-  --brand-blue: #2e3192;
-  --brand-red: #ed1c24;
-  --ink: #151827;
-  --muted: #5d6374;
-  --line: #dfe2ea;
-  --surface: #f5f7fa;
-  --white: #fff;
-  --steel: #8ca3b2;
-  --shell: min(1180px, calc(100% - 40px));
-  --space-1: .5rem;
-  --space-2: 1rem;
-  --space-3: 1.5rem;
-  --space-4: 2rem;
-  --space-5: 3rem;
-  --space-6: clamp(4rem, 8vw, 7rem);
-  --shadow: 0 18px 50px rgb(21 24 39 / 12%);
-  --transition: 180ms ease;
-  font-family: "Avenir Next", "Segoe UI", Arial, sans-serif;
-  color: var(--ink);
-  background: var(--white);
+  --page: #FFFFFF;
+  --surface: #F5F7FA;
+  --text: #172033;
+  --muted: #475569;
+  --brand-blue: #2E3192;
+  --brand-red: #ED1C24;
+  --border: #D9E1EA;
+  --container: 1180px;
+  --gutter: 32px;
+  --space-1: 8px;
+  --space-2: 12px;
+  --space-3: 16px;
+  --space-4: 24px;
+  --space-5: 32px;
+  --space-6: 48px;
+  --space-7: 72px;
+  --space-8: 112px;
+  --section-space: clamp(64px, 8vw, var(--space-8));
+  --radius-control: 8px;
+  --radius-media: 12px;
+  --control-min: 44px;
+  --button-min: 48px;
+  --motion-fast: 160ms;
+  --motion-base: 240ms;
+  --motion-ease: cubic-bezier(.2, .8, .2, 1);
+  --motion-enter-distance: 12px;
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  color: var(--text);
+  background: var(--page);
   scroll-behavior: smooth;
 }
 
 *, *::before, *::after { box-sizing: border-box; }
-body { margin: 0; color: var(--ink); background: var(--white); line-height: 1.65; }
+body { margin: 0; color: var(--text); background: var(--page); font-size: clamp(1rem, .97rem + .15vw, 1.125rem); font-weight: 400; line-height: 1.65; }
 img { display: block; max-width: 100%; }
 a { color: inherit; }
 button, input, textarea { font: inherit; }
-.shell { width: var(--shell); margin-inline: auto; }
-.section { padding-block: var(--space-6); }
-.section-label { margin: 0 0 .75rem; color: var(--brand-red); font-size: .78rem; font-weight: 800; letter-spacing: .16em; text-transform: uppercase; }
+.shell { width: min(var(--container), calc(100% - (var(--gutter) * 2))); margin-inline: auto; }
+.section { padding-block: var(--section-space); }
+.section-label { margin: 0 0 var(--space-2); color: var(--brand-red); font-size: .75rem; font-weight: 800; line-height: 1.2; letter-spacing: .14em; text-transform: uppercase; }
 h1, h2, h3, p { margin-top: 0; }
-h1 { max-width: 12ch; font-size: clamp(2.7rem, 6vw, 5.75rem); line-height: .98; letter-spacing: -.055em; }
-h2 { max-width: 14ch; font-size: clamp(2rem, 4vw, 3.75rem); line-height: 1.05; letter-spacing: -.04em; }
+h1 { max-width: 12ch; font-size: clamp(2.5rem, 6vw, 4.75rem); font-weight: 800; line-height: 1; letter-spacing: -.045em; }
+h2 { max-width: 14ch; font-size: clamp(2rem, 4vw, 3.25rem); font-weight: 800; line-height: 1.06; letter-spacing: -.035em; }
+h3 { font-size: clamp(1.25rem, 2vw, 1.5rem); font-weight: 700; line-height: 1.2; letter-spacing: -.02em; }
 :focus-visible { outline: 3px solid var(--brand-red); outline-offset: 4px; }
-.skip-link { position: fixed; z-index: 100; top: 1rem; left: 1rem; transform: translateY(-180%); padding: .75rem 1rem; background: var(--white); }
+.skip-link { position: fixed; z-index: 100; top: var(--space-3); left: var(--space-3); transform: translateY(-180%); padding: var(--space-2) var(--space-3); background: var(--page); }
 .skip-link:focus { transform: none; }
 .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
-.button { display: inline-flex; min-height: 48px; align-items: center; justify-content: center; padding: .8rem 1.25rem; border: 1px solid var(--brand-blue); background: var(--brand-blue); color: var(--white); font-weight: 750; text-decoration: none; transition: background var(--transition), color var(--transition), transform var(--transition); }
-.button:hover { transform: translateY(-2px); background: #202473; }
-.button--small { min-height: 40px; padding: .55rem .9rem; }
-.button--light { border-color: var(--white); background: var(--white); color: var(--brand-blue); }
-.button--outline-light { border-color: rgb(255 255 255 / 55%); background: transparent; }
-.text-link { font-weight: 750; text-underline-offset: .28em; }
-.text-link--light { color: var(--white); }
-.site-header { position: sticky; z-index: 20; top: 0; border-bottom: 1px solid rgb(223 226 234 / 85%); background: rgb(255 255 255 / 92%); backdrop-filter: blur(14px); }
-.site-header__inner { display: flex; min-height: 78px; align-items: center; gap: 2rem; }
+.button { display: inline-flex; min-height: var(--button-min); align-items: center; justify-content: center; padding: var(--space-2) 20px; border: 1px solid var(--brand-blue); border-radius: var(--radius-control); background: var(--brand-blue); color: var(--page); font-size: .9375rem; font-weight: 700; line-height: 1.2; letter-spacing: .01em; text-decoration: none; transition: transform var(--motion-fast) var(--motion-ease); }
+.button:hover { transform: translateY(-2px); }
+.button--small { min-height: var(--control-min); padding: var(--space-2) 14px; }
+.button--light { border-color: var(--page); background: var(--page); color: var(--brand-blue); }
+.button--outline-light { border-color: var(--page); background: transparent; }
+.text-link { color: var(--brand-blue); font-weight: 700; text-underline-offset: .28em; }
+.site-header { position: sticky; z-index: 20; top: 0; border-bottom: 1px solid var(--border); background: var(--page); }
+.site-header__inner { display: flex; min-height: 78px; align-items: center; gap: var(--space-5); }
 .brand { margin-right: auto; }
 .brand img { width: 164px; height: auto; }
 .site-nav { display: flex; gap: 1.65rem; }
-.site-nav a { font-size: .94rem; font-weight: 700; text-decoration: none; }
+.site-nav a { min-height: var(--control-min); display: inline-flex; align-items: center; font-size: .9375rem; font-weight: 700; line-height: 1.2; letter-spacing: .01em; text-decoration: none; }
 .nav-toggle { display: none; }
-.hero { overflow: hidden; padding-block: clamp(2rem, 5vw, 5rem); background: linear-gradient(90deg, var(--surface) 0 54%, var(--white) 54%); }
-.hero__copy { display: grid; min-height: min(720px, calc(100vh - 120px)); grid-template-columns: minmax(0, .92fr) minmax(0, 1.08fr); align-items: center; gap: clamp(2rem, 6vw, 6rem); }
-.hero__copy > div > p { max-width: 34ch; color: var(--muted); font-size: clamp(1.1rem, 2vw, 1.35rem); }
-.hero__actions, .contact-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 1rem; }
-.hero__media { margin: 0; height: min(640px, 70vh); }
+.hero { overflow: hidden; padding-block: clamp(var(--space-5), 5vw, var(--space-7)); background: var(--surface); }
+.hero__copy { display: grid; min-height: min(720px, calc(100vh - 120px)); grid-template-columns: repeat(2, minmax(0, 1fr)); align-items: center; gap: clamp(var(--space-5), 6vw, var(--space-8)); }
+.hero__copy > div > p { max-width: 34ch; color: var(--muted); font-size: clamp(1.125rem, 1.05rem + .4vw, 1.375rem); font-weight: 400; line-height: 1.5; letter-spacing: -.01em; }
+.hero__actions, .contact-actions { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-3); }
+.hero__media { margin: 0; height: min(640px, 70vh); border-radius: var(--radius-media); }
 .hero__media img { width: 100%; height: 100%; object-fit: cover; object-position: center; }
-.about__grid, .products__grid, .contact__grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(2.5rem, 8vw, 7rem); }
+.media--edge-crop { position: relative; overflow: hidden; }
+.hero__media.media--edge-crop img, .gallery__item.media--edge-crop img { position: absolute; inset: -2%; width: 104%; height: 104%; max-width: none; object-fit: cover; object-position: center; }
+.about__grid, .products__grid, .contact__grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(var(--space-5), 8vw, var(--space-8)); }
 .prose { max-width: 62ch; }
 .products { background: var(--surface); }
 .products figure { margin: 0; align-self: stretch; }
-.products figure img { width: 100%; height: 100%; min-height: 480px; object-fit: cover; }
-.product-list { margin: 2rem 0 0; padding: 0; list-style: none; counter-reset: products; }
-.product-list li { display: grid; grid-template-columns: 2.5rem 1fr; gap: .75rem; padding-block: .9rem; border-top: 1px solid var(--line); counter-increment: products; }
+.products figure img { width: 100%; height: 100%; min-height: 480px; border-radius: var(--radius-media); object-fit: cover; }
+.product-list { margin: var(--space-5) 0 0; padding: 0; list-style: none; counter-reset: products; }
+.product-list li { display: grid; grid-template-columns: 2.5rem 1fr; gap: var(--space-2); padding-block: var(--space-2); border-top: 1px solid var(--border); counter-increment: products; }
 .product-list li::before { content: counter(products, decimal-leading-zero); color: var(--brand-red); font-weight: 800; }
-.section-heading { display: flex; justify-content: space-between; gap: 2rem; align-items: end; margin-bottom: 2.5rem; }
+.section-heading { display: flex; justify-content: space-between; gap: var(--space-5); align-items: end; margin-bottom: var(--space-6); }
 .section-heading > p { max-width: 34ch; color: var(--muted); }
-.gallery { display: grid; grid-template-columns: repeat(12, 1fr); gap: 1rem; }
-.gallery__item { grid-column: span 4; min-height: 280px; padding: 0; border: 0; background: var(--surface); cursor: zoom-in; overflow: hidden; }
+.gallery { display: grid; grid-template-columns: repeat(12, 1fr); gap: var(--space-3); }
+.gallery__item { grid-column: span 4; min-height: 280px; padding: 0; border: 0; border-radius: var(--radius-media); background: var(--surface); cursor: zoom-in; overflow: hidden; }
 .gallery__item:first-child { grid-column: span 8; grid-row: span 2; }
-.gallery__item img { width: 100%; height: 100%; object-fit: cover; transition: transform 350ms ease; }
-.gallery__item:hover img { transform: scale(1.025); }
-.contact { padding-block: var(--space-6); background: #191d55; color: var(--white); }
-.contact a { color: inherit; }
-.contact address { margin-top: 2.5rem; font-style: normal; }
-.hours-map table { width: 100%; margin-bottom: 1.5rem; border-collapse: collapse; }
-.hours-map caption { margin-bottom: .75rem; text-align: left; font-weight: 800; }
-.hours-map th, .hours-map td { padding: .7rem 0; border-bottom: 1px solid rgb(255 255 255 / 22%); text-align: left; }
-.hours-map iframe { width: 100%; min-height: 320px; border: 0; filter: grayscale(.85) contrast(1.05); }
-.site-footer { padding-block: 2rem; border-top: 1px solid var(--line); }
-.site-footer .shell { display: flex; align-items: center; gap: 2rem; }
+.gallery__item img { width: 100%; height: 100%; object-fit: cover; transition: transform var(--motion-fast) var(--motion-ease); }
+.gallery__item:hover img { transform: scale(1.02); }
+.contact { padding-block: var(--section-space); background: var(--surface); color: var(--text); }
+.contact__grid { gap: 0; }
+.contact__grid > div { padding: clamp(var(--space-5), 5vw, var(--space-7)); }
+.contact__grid > div:first-child { background: var(--brand-blue); color: var(--page); }
+.hours-map { background: var(--page); }
+.contact__grid > div:first-child a { color: inherit; }
+.contact address { margin-top: var(--space-6); font-style: normal; }
+.hours-map table { width: 100%; margin-bottom: var(--space-4); border-collapse: collapse; }
+.hours-map caption { margin-bottom: var(--space-2); text-align: left; font-weight: 800; }
+.hours-map th, .hours-map td { padding: .7rem 0; border-bottom: 1px solid var(--border); text-align: left; }
+.hours-map iframe { width: 100%; min-height: 320px; border: 0; }
+.site-footer { padding-block: var(--space-5); border-top: 1px solid var(--border); }
+.site-footer .shell { display: flex; align-items: center; gap: var(--space-5); }
 .site-footer img { width: 135px; }
 .site-footer p { margin: 0 auto 0 0; color: var(--muted); }
-.image-dialog { width: min(960px, calc(100% - 32px)); padding: 0; border: 0; background: var(--ink); color: var(--white); box-shadow: var(--shadow); }
-.image-dialog::backdrop { background: rgb(10 12 22 / 82%); }
+.image-dialog { width: min(960px, calc(100% - 32px)); padding: 0; border: 0; background: var(--text); color: var(--page); }
+.image-dialog::backdrop { background: rgb(23 32 51 / 82%); }
 .image-dialog img { width: 100%; max-height: 78vh; object-fit: contain; }
-.image-dialog button { position: absolute; top: .75rem; right: .75rem; display: grid; width: 44px; height: 44px; place-items: center; border: 0; background: var(--white); color: var(--ink); cursor: pointer; }
+.image-dialog button { position: absolute; top: var(--space-2); right: var(--space-2); display: grid; width: var(--control-min); height: var(--control-min); place-items: center; border: 0; border-radius: var(--radius-control); background: var(--page); color: var(--text); cursor: pointer; }
 .image-dialog button svg { width: 22px; height: 22px; }
-.image-dialog p { margin: 0; padding: 1rem 1.25rem; }
+.image-dialog p { margin: 0; padding: var(--space-3) 20px; }
 
 @media (max-width: 800px) {
-  :root { --shell: min(100% - 28px, 680px); }
+  :root { --gutter: 24px; }
   .header-contact { display: none; }
-  .nav-toggle { display: inline-grid; width: 44px; height: 44px; place-items: center; border: 1px solid var(--line); background: var(--white); }
-  .nav-toggle span[aria-hidden] { width: 18px; height: 2px; background: var(--ink); box-shadow: 0 -6px var(--ink), 0 6px var(--ink); }
-  .site-nav { position: absolute; top: 100%; right: 0; left: 0; display: none; flex-direction: column; padding: 1.25rem var(--space-3); border-bottom: 1px solid var(--line); background: var(--white); }
+  .nav-toggle { display: inline-grid; width: var(--control-min); height: var(--control-min); place-items: center; border: 1px solid var(--border); border-radius: var(--radius-control); background: var(--page); }
+  .nav-toggle span[aria-hidden] { width: 18px; height: 2px; background: var(--text); box-shadow: 0 -6px var(--text), 0 6px var(--text); }
+  .site-nav { position: absolute; top: 100%; right: 0; left: 0; display: none; flex-direction: column; padding: 20px var(--space-3); border-bottom: 1px solid var(--border); background: var(--page); }
   .site-nav[data-open="true"] { display: flex; }
   .hero { background: var(--surface); }
   .hero__copy, .about__grid, .products__grid, .contact__grid { grid-template-columns: 1fr; }
-  .hero__copy { min-height: 0; padding-block: 3rem; }
+  .hero__copy { min-height: 0; padding-block: var(--space-6); }
   .hero__media { height: 58vw; min-height: 320px; }
   .products figure img { min-height: 320px; }
   .section-heading, .site-footer .shell { align-items: flex-start; flex-direction: column; }
@@ -412,19 +429,20 @@ h2 { max-width: 14ch; font-size: clamp(2rem, 4vw, 3.75rem); line-height: 1.05; l
 }
 
 @media (max-width: 520px) {
-  h1 { font-size: clamp(2.55rem, 14vw, 4rem); }
+  :root { --gutter: 18px; }
   .gallery__item, .gallery__item:first-child { grid-column: 1 / -1; min-height: 240px; }
   .hero__actions, .contact-actions { align-items: stretch; flex-direction: column; }
   .button { width: 100%; }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  :root { scroll-behavior: auto; }
-  *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; animation-duration: .01ms !important; }
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+  [data-reveal], .button, .gallery__item img { opacity: 1 !important; transform: none !important; }
 }
 ```
 
-Tune exact spacing, crop positions, and typography only to match the accepted concept screenshots. Keep the token palette and section order fixed.
+Use these design-system values exactly. Focal `object-position` may be adjusted during browser QA to keep subjects comfortably framed. For the thin baked-in near-white capture borders in `hero-team.jpg` and `factory-team.jpg`, retain the dedicated 2% CSS edge crop (permitted range: 1–3%) and do not edit the source files. Do not apply photo filters, overlays, tints, gradients, blend modes, or any other color/tone treatment. Keep the palette and section order fixed.
 
 - [ ] **Step 2: Run static tests**
 
@@ -688,7 +706,7 @@ Inspect the concept and browser screenshot pairs directly. Record at least five 
 4. Gallery rhythm, image crops, and spacing.
 5. Contact palette, map framing, and mobile collapse.
 
-Fix every material mismatch and repeat the screenshots. The allowed above-the-fold copy is only the header navigation, hero heading, quality statement, “Contact our team,” and “View product range.”
+Fix every material mismatch and repeat the screenshots. The allowed above-the-fold visible copy is only the approved logo; “About,” “Products,” “Factory,” “Contact,” “Email us,” “Unsaturated Polyester Resin Manufacturer,” “Precision and quality in every batch, every time.,” “Contact our team,” and “View product range.”
 
 - [ ] **Step 5: Run fresh verification and commit QA fixes**
 

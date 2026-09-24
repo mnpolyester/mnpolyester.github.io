@@ -63,14 +63,89 @@ The stack must degrade cleanly without loading a remote font. Headings should be
 
 Use responsive `clamp()` scales for major headings, body copy, and spacing. Preserve clear hierarchy without oversized display text that forces useful content below the fold.
 
+Apply this exact responsive type scale:
+
+| Role | Size | Weight | Line height | Tracking |
+| --- | --- | --- | --- | --- |
+| Display / `h1` | `clamp(2.5rem, 6vw, 4.75rem)` | `800` | `1` | `-0.045em` |
+| Section / `h2` | `clamp(2rem, 4vw, 3.25rem)` | `800` | `1.06` | `-0.035em` |
+| Subheading / `h3` | `clamp(1.25rem, 2vw, 1.5rem)` | `700` | `1.2` | `-0.02em` |
+| Lead | `clamp(1.125rem, 1.05rem + 0.4vw, 1.375rem)` | `400` | `1.5` | `-0.01em` |
+| Body | `clamp(1rem, 0.97rem + 0.15vw, 1.125rem)` | `400` | `1.65` | `0` |
+| Navigation and controls | `0.9375rem` | `700` | `1.2` | `0.01em` |
+| Section label | `0.75rem` | `800` | `1.2` | `0.14em`, uppercase |
+
 ## Container, spacing, and shape
 
 - Maximum content container: `1180px`.
-- Use roomy, consistent section rhythm with responsive `clamp()` spacing.
 - Keep text measures readable even within the full container.
 - Use 8–12px corner radii only on media frames and buttons.
 - Avoid pill-shaped controls, excessive rounding, shadows that suggest floating cards, and card-grid treatment.
 - Let borders, alignment, white space, and alternating white/cool-steel surfaces establish structure.
+
+Use these exact implementation tokens:
+
+```css
+:root {
+  --page: #FFFFFF;
+  --surface: #F5F7FA;
+  --text: #172033;
+  --muted: #475569;
+  --brand-blue: #2E3192;
+  --brand-red: #ED1C24;
+  --border: #D9E1EA;
+  --container: 1180px;
+  --gutter: 32px;
+  --space-1: 8px;
+  --space-2: 12px;
+  --space-3: 16px;
+  --space-4: 24px;
+  --space-5: 32px;
+  --space-6: 48px;
+  --space-7: 72px;
+  --space-8: 112px;
+  --section-space: clamp(64px, 8vw, var(--space-8));
+  --radius-control: 8px;
+  --radius-media: 12px;
+  --control-min: 44px;
+  --button-min: 48px;
+  --motion-fast: 160ms;
+  --motion-base: 240ms;
+  --motion-ease: cubic-bezier(.2, .8, .2, 1);
+  --motion-enter-distance: 12px;
+}
+
+.shell {
+  width: min(var(--container), calc(100% - (var(--gutter) * 2)));
+  margin-inline: auto;
+}
+
+@media (max-width: 800px) {
+  :root { --gutter: 24px; }
+}
+
+@media (max-width: 520px) {
+  :root { --gutter: 18px; }
+}
+```
+
+The spacing scale is the only default source for gaps, padding, and margins. Use `--section-space` for primary section padding and the fixed steps for internal rhythm.
+
+### Responsive breakpoints
+
+- Above `800px`: desktop navigation, two-column hero, and multi-column content compositions.
+- At `800px` and below: mobile menu, stacked hero with copy first, stacked About/contact layouts, and a two-column gallery where space allows.
+- At `520px` and below: compact gutters, single-column gallery, and full-width action buttons.
+
+Do not add intermediary layout breakpoints unless browser verification demonstrates a concrete overflow defect.
+
+### Shape and control dimensions
+
+- Standard buttons: minimum height `48px`, horizontal padding `20px`, radius `8px`.
+- Compact header button: minimum height `44px`, horizontal padding `14px`, radius `8px`.
+- Icon-only controls: exactly `44px × 44px`, radius `8px`.
+- Media frames: radius `12px`.
+- All other sections, lists, split panels, and structural surfaces remain square-cornered.
 
 ## Components
 
@@ -116,6 +191,29 @@ Use only the local image assets below with the associated truthful descriptions.
 
 The hero must show `hero-team.jpg` naturally and untreated. Do not place a blue overlay, darkening tint, colored wash, or gradient above it. Text belongs in the separate left column, never over the photograph.
 
+### Intentional capture-edge crop
+
+`hero-team.jpg` and `factory-team.jpg` contain thin, baked-in near-white borders from the original capture. Do not edit, retouch, or regenerate either source file. Crop only the outer 1–3% in CSS. The standard implementation uses a 2% crop on every edge:
+
+```css
+.media--edge-crop {
+  position: relative;
+  overflow: hidden;
+}
+
+.media--edge-crop img {
+  position: absolute;
+  inset: -2%;
+  width: 104%;
+  height: 104%;
+  max-width: none;
+  object-fit: cover;
+  object-position: center;
+}
+```
+
+Focal-position adjustments may keep people comfortably framed, but the border correction must remain within the outer 1–3%. Do not add a filter, overlay, tint, contrast adjustment, saturation adjustment, blend mode, or any other color/tone treatment.
+
 ## Icon inventory
 
 The required icon set is:
@@ -143,7 +241,27 @@ Implement icons as simple inline SVGs with 2px outlines and `currentColor`, keep
 
 ## Motion
 
-Motion is limited to subtle opacity/translate entrances and restrained hover feedback. It must never delay access to content or move large distances. Disable all nonessential transitions, transforms, and animations under `prefers-reduced-motion: reduce`.
+Motion is limited to subtle opacity/translate entrances and restrained hover feedback. Entrances use `240ms`, `var(--motion-ease)`, and no more than `12px` of vertical travel. Hover feedback uses `160ms`, the same easing, and no more than `2px` of vertical travel; an image hover may scale to at most `1.02`. Motion must never delay access to content.
+
+Disable motion completely when reduced motion is requested:
+
+```css
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+
+  *, *::before, *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+
+  [data-reveal],
+  .button,
+  .gallery__item img {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+```
 
 ## Concept reference index
 
