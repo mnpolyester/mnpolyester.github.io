@@ -35,6 +35,18 @@ The visual identity will retain the current blue-grey industrial character and a
 
 The implementation will use a small design system covering colors, typography, spacing, responsive containers, buttons, navigation, product rows, gallery frames, and contact details. Motion will be limited to subtle transitions and will respect reduced-motion preferences.
 
+## Logo assets
+
+The established M–N–P oval-and-orbit logo will be preserved rather than redesigned. The existing 700 × 297 source artwork will be deterministically traced into scalable vector paths, retaining its letter shapes, swooshes, proportions, “INDIA PVT LTD” line, and original blue and red palette (`#2E3192` and `#ED1C24`). Generative image tools will not redraw or reinterpret the mark.
+
+The website asset set will contain:
+
+- The complete logo with the original “INDIA PVT LTD” line in SVG and transparent high-resolution PNG formats.
+- An authentic mark-only variant that removes only the tiny legal line for placements where it would be unreadable.
+- A square favicon and touch-icon variant derived from the existing red N oval, without inventing a new symbol.
+
+SVG will be preferred in the website so the logo remains sharp at every size. PNG exports will be retained for sharing, social metadata, and systems that cannot use SVG.
+
 ## Technical architecture
 
 The site will be built with semantic HTML, CSS, and minimal vanilla JavaScript. This approach is recommended over React, Vite, or Jekyll because the site has no application state, backend, or templated content and should remain easy to host and maintain.
@@ -43,7 +55,7 @@ Repository deliverables will include:
 
 - `index.html` for the page structure and content.
 - Styles and minimal behavior in focused static asset files.
-- Locally hosted, optimized versions of the existing site photographs.
+- Locally hosted, optimized versions of the existing site photographs and the approved logo asset set.
 - `CNAME` containing `mnpolyester.in`.
 - Basic metadata, social sharing metadata, favicon assets, robots directives, and a sitemap where appropriate.
 - A concise README explaining local preview, GitHub Pages setup, and DNS records.
