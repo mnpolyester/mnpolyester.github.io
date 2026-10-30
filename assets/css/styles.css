@@ -514,16 +514,17 @@ h3 {
   letter-spacing: -.03em;
 }
 
-.product-document-link {
+.product-entry {
   display: grid;
-  gap: 6px;
-  min-height: var(--control-min);
-  align-content: center;
-  color: var(--brand-blue);
-  text-decoration: none;
+  gap: 4px;
+  color: var(--text);
 }
 
-.product-document-link__caption {
+.product-document-link {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--control-min);
+  color: var(--brand-blue);
   font-size: .75rem;
   font-weight: 700;
   line-height: 1.5;
@@ -531,7 +532,6 @@ h3 {
   text-underline-offset: 3px;
 }
 
-.product-document-link:hover > :first-child { text-decoration: underline; }
 .document-row:target { background: rgba(46, 49, 146, .04); }
 
 .technical-documents {
