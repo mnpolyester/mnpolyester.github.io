@@ -25,10 +25,15 @@ jobs:
         uses: actions/checkout@v7
       - name: Configure GitHub Pages
         uses: actions/configure-pages@v6
+      - name: Prepare static site
+        run: |
+          mkdir _site
+          cp index.html robots.txt sitemap.xml CNAME .nojekyll _site/
+          cp -R assets _site/assets
       - name: Upload site artifact
         uses: actions/upload-pages-artifact@v5
         with:
-          path: .
+          path: _site
           include-hidden-files: true
       - name: Deploy to GitHub Pages
         id: deployment
