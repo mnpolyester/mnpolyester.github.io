@@ -42,6 +42,34 @@
   }
 
   const gallery = document.querySelector('[data-gallery]');
+  const galleryControls = document.querySelector('[data-gallery-controls]');
+  const galleryPrevious = document.querySelector('[data-gallery-previous]');
+  const galleryNext = document.querySelector('[data-gallery-next]');
+  if (gallery instanceof HTMLElement && galleryControls instanceof HTMLElement
+      && galleryPrevious instanceof HTMLButtonElement && galleryNext instanceof HTMLButtonElement) {
+    galleryControls.hidden = false;
+    const updateGalleryControls = () => {
+      galleryPrevious.disabled = gallery.scrollLeft <= 2;
+      galleryNext.disabled = gallery.scrollLeft + gallery.clientWidth >= gallery.scrollWidth - 2;
+    };
+    const moveGallery = (direction) => {
+      const image = gallery.querySelector('button');
+      const distance = image ? image.getBoundingClientRect().width + 16 : gallery.clientWidth;
+      gallery.scrollBy({ left: direction * distance, behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' });
+    };
+    galleryPrevious.addEventListener('click', () => moveGallery(-1));
+    galleryNext.addEventListener('click', () => moveGallery(1));
+    gallery.addEventListener('scroll', updateGalleryControls, { passive: true });
+    window.addEventListener('resize', updateGalleryControls);
+    updateGalleryControls();
+  }
+
+  const backToTop = document.querySelector('[data-back-to-top]');
+  const hero = document.querySelector('.hero');
+  if (backToTop instanceof HTMLElement && hero instanceof HTMLElement && 'IntersectionObserver' in window) {
+    new IntersectionObserver(([entry]) => { backToTop.hidden = entry.isIntersecting; }).observe(hero);
+  }
+
   const dialog = document.querySelector('[data-image-dialog]');
   const dialogImage = dialog?.querySelector('[data-dialog-image]');
   const dialogCaption = dialog?.querySelector('[data-dialog-caption]');
