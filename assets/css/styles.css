@@ -91,6 +91,7 @@ a {
 }
 
 section[id],
+.document-row[id],
 #main-content {
   scroll-margin-top: calc(var(--space-7) + var(--space-5));
 }
@@ -512,6 +513,26 @@ h3 {
   font-weight: 800;
   letter-spacing: -.03em;
 }
+
+.product-document-link {
+  display: grid;
+  gap: 6px;
+  min-height: var(--control-min);
+  align-content: center;
+  color: var(--brand-blue);
+  text-decoration: none;
+}
+
+.product-document-link__caption {
+  font-size: .75rem;
+  font-weight: 700;
+  line-height: 1.5;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.product-document-link:hover > :first-child { text-decoration: underline; }
+.document-row:target { background: rgba(46, 49, 146, .04); }
 
 .technical-documents {
   background: var(--page);
